@@ -34,8 +34,18 @@ psql
 # GRANT ALL PRIVILEGES ON DATABASE health TO health;
 ```
 
+Create base tables in the database:
+```sh
+python3 manage.py migrate
+```
+
+Create a system user:
+```sh
+python3 manage.py createsuperuser
+```
+
 To run the app:
 ```sh
-python manage.py runserver
+python3 manage.py runserver
 ```
 
