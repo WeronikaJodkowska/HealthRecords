@@ -13,10 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from users.views import index, register_user, activate_user
 
-from users.views import index
+app_name = 'users'
 
 urlpatterns = [
     path("", index, name="detail"),
-]
+    path("", include('django.contrib.auth.urls')),
+    path('register/', register_user, name='register_user'),
+    path('activate/<uidb64>/<token>/', activate_user, name='activate_user'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
