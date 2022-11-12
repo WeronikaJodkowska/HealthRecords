@@ -2,6 +2,8 @@ from django import forms
 from django.db import models
 from django.conf import settings
 
+from reference_information.models import Allergy
+
 
 class Profile(models.Model):
     BLOOD_TYPE_CHOICES = [
@@ -36,6 +38,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     height = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
+    allergy = models.ManyToManyField(Allergy)
 
     def __str__(self):
         return f'Profile for user {self.user.username}'

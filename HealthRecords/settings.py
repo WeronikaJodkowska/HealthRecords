@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "health_indicators",
     "analyzes_records",
     "visit_records",
+    "reference_information"
 ]
 
 MIDDLEWARE = [
