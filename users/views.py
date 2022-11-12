@@ -26,7 +26,7 @@ UserModel = get_user_model()
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'base.html')
 
 
 def validate_password_strength(value):

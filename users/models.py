@@ -31,11 +31,11 @@ class Profile(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     surname = models.CharField(max_length=200, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
-    blood_type = models.CharField(max_length=3, choices=BLOOD_TYPE_CHOICES, blank=True, null=True)
-    gender = models.IntegerField(choices=GENDER_CHOICES, blank=True, null=True)
-    diabetes = forms.ChoiceField(choices=TRUE_FALSE_CHOICES, widget=forms.Select())
-    height = models.CharField(max_length=3, blank=True, null=True)
-    weight = models.CharField(max_length=3, blank=True, null=True)
+    blood_type = models.CharField(max_length=3, choices=BLOOD_TYPE_CHOICES,
+                                  blank=True, null=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
+    height = models.IntegerField(blank=True, null=True)
+    weight = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return f'Profile for user {self.user.name}'
+        return f'Profile for user {self.user.username}'
