@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ElT
 
-from reference_information.models import Diagnosis
+from reference_information.models import Diagnosis, Symptom
 
 
 def save_xml():
@@ -15,4 +15,15 @@ def save_xml():
         x = Diagnosis.objects.create(
             icd_code=icd_code, title=title, description=description
         )
+        x.save()
+
+
+def save_xml_symptoms():
+    file_dir = "../staticfiles/symptoms.xml"
+    records = ElT.parse(file_dir)
+    symptoms = records.findall("record")
+    for symptom in symptoms:
+        title = symptom.find("title").text
+
+        x = Symptom.objects.create(title=title)
         x.save()

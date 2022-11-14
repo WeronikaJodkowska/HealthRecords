@@ -16,9 +16,8 @@ media/
 # Static
 static/
 
+# Staticfiles
+staticfiles/
+
 # Database backups
 db_dump/
-
-# Help
-help.txt
-ICD-10.xml
