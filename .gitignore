@@ -15,3 +15,9 @@ media/
 
 # Static
 static/
+
+# Database backups
+db_dump/
+
+# Help
+help.txt

@@ -5,4 +5,4 @@ from .models import Allergy
 
 @admin.register(Allergy)
 class AllergyAdmin(admin.ModelAdmin):
-    list_display = ['title']
+    list_display = ["title"]
