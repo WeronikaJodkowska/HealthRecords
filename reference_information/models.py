@@ -47,3 +47,14 @@ class Symptom(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class DoctorSpecialization(models.Model):
+    class Meta:
+        verbose_name_plural = "Doctor's specializations"
+
+    title = models.CharField(max_length=300)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
