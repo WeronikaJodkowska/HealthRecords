@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Allergy, Diagnosis, DoctorSpecialization, Symptom
+from .models import Allergy, Diagnosis, DoctorSpecialization, Symptom, HealthTest, MedInstitution
 
 
 @admin.register(Allergy)
@@ -20,4 +20,14 @@ class SymptomAdmin(admin.ModelAdmin):
 
 @admin.register(DoctorSpecialization)
 class DoctorSpecializationAdmin(admin.ModelAdmin):
+    list_display = ["title"]
+
+
+@admin.register(HealthTest)
+class HealthTestAdmin(admin.ModelAdmin):
+    list_display = ["title"]
+
+
+@admin.register(MedInstitution)
+class MedInstitutionAdmin(admin.ModelAdmin):
     list_display = ["title"]

@@ -16,12 +16,13 @@ from django.views.generic import DetailView
 
 from .forms import LoginForm, RegistrationForm
 from .models import Profile
-
+from reference_information.xml_import import save_xml_tests
 UserModel = get_user_model()
 
 
 # Create your views here.
 def index(request):
+    save_xml_tests()
     return render(request, "base.html")
 
 

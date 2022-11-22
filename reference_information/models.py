@@ -58,3 +58,35 @@ class DoctorSpecialization(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class HealthTest(models.Model):
+    class Meta:
+        verbose_name_plural = "Health tests"
+
+    test_code = models.CharField(max_length=10, default=0)
+    title = models.CharField(max_length=300)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class MedInstitution(models.Model):
+    class Meta:
+        verbose_name_plural = "Med institutions"
+
+    title = models.CharField(max_length=300)
+    address_1 = models.CharField(max_length=300)
+    address_2 = models.CharField(max_length=300, blank=True, null=True)
+    address_3 = models.CharField(max_length=300, blank=True, null=True)
+    address_4 = models.CharField(max_length=300, blank=True, null=True)
+    address_5 = models.CharField(max_length=300, blank=True, null=True)
+    phone_1 = models.CharField(max_length=20, blank=True, null=True)
+    phone_2 = models.CharField(max_length=20, blank=True, null=True)
+    phone_3 = models.CharField(max_length=20, blank=True, null=True)
+    site = models.URLField(max_length=300, blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
