@@ -90,3 +90,40 @@ class MedInstitution(models.Model):
     def __str__(self):
         return self.title
 
+
+class Laboratory(models.Model):
+    class Meta:
+        verbose_name_plural = "Laboratories"
+
+    title = models.CharField(max_length=300)
+    address = models.CharField(max_length=300, blank=True, null=True)
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    site = models.URLField(max_length=300, blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class MedCategory(models.Model):
+    class Meta:
+        verbose_name_plural = "Medicine categories"
+
+    title = models.CharField(max_length=300)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Doctor(models.Model):
+    class Meta:
+        verbose_name_plural = "Doctors"
+
+    name = models.CharField(max_length=100)
+    speciality = models.ForeignKey(DoctorSpecialization, blank=True, null=True,
+                                   default=None, on_delete=models.CASCADE)
+    category = models.ForeignKey(MedCategory, blank=True, null=True,
+                                 default=None, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
