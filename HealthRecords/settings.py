@@ -12,15 +12,20 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-_!kic0)56^8_1m^358zvz_u46+n#q96h#h52f(73xdb99lpv_!"
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +43,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "xml.etree.ElementTree",
+    "django_filters",
+    "crispy_forms",
+    "crispy_bootstrap5",
     "users",
     "health_indicators",
     "analyzes_records",
@@ -82,9 +90,9 @@ WSGI_APPLICATION = "HealthRecords.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "health",
-        "USER": "health",
-        "PASSWORD": "health",
+        "NAME": env("DATABASE_NAME"),
+        "USER": env("DATABASE_USER"),
+        "PASSWORD": env("DATABASE_PASSWORD"),
         "HOST": "localhost",
         "PORT": 5432,
     }

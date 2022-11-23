@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ElT
 
-from reference_information.models import Diagnosis, Symptom, HealthTest
+from reference_information.models import Diagnosis, HealthTest, Symptom
 
 
 def save_xml():

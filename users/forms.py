@@ -1,9 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-
-from users.models import Profile
 
 
 def validate_password_strength(value):
@@ -26,18 +23,10 @@ def validate_password_strength(value):
         raise ValidationError(_("Password must contain at least 1 letter."))
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
-
-
-class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+class RegisterForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(min_length=8, widget=forms.PasswordInput())
     password2 = forms.CharField(label="Repeat password", widget=forms.PasswordInput)
-
-    class Meta:
-        model = User
-        fields = ("username", "first_name", "email")
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -46,3 +35,8 @@ class RegistrationForm(forms.ModelForm):
         if validate_password_strength(cd["password"]):
             raise forms.ValidationError("Passwords are too short.")
         return cd["password2"]
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=255, label="Email")
+    password = forms.CharField(min_length=8, widget=forms.PasswordInput())

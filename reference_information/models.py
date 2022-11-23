@@ -38,17 +38,6 @@ class Diagnosis(models.Model):
         return self.title
 
 
-class Symptom(models.Model):
-    class Meta:
-        verbose_name_plural = "Symptoms"
-
-    title = models.CharField(max_length=300)
-    description = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return self.title
-
-
 class DoctorSpecialization(models.Model):
     class Meta:
         verbose_name_plural = "Doctor's specializations"
@@ -120,10 +109,27 @@ class Doctor(models.Model):
         verbose_name_plural = "Doctors"
 
     name = models.CharField(max_length=100)
-    speciality = models.ForeignKey(DoctorSpecialization, blank=True, null=True,
-                                   default=None, on_delete=models.CASCADE)
-    category = models.ForeignKey(MedCategory, blank=True, null=True,
-                                 default=None, on_delete=models.CASCADE)
+    speciality = models.ForeignKey(
+        DoctorSpecialization,
+        blank=True,
+        null=True,
+        default=None,
+        on_delete=models.CASCADE,
+    )
+    category = models.ForeignKey(
+        MedCategory, blank=True, null=True, default=None, on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.name
+
+
+class Symptom(models.Model):
+    class Meta:
+        verbose_name_plural = "Symptoms"
+
+    title = models.CharField(max_length=300)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title

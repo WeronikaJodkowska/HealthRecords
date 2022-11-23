@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import include, path
+from django.urls import path
 
-from users.views import activate_user, index, register_user
+from users.views import index, login_user, logout_view, register
 
 app_name = "users"
 
 urlpatterns = [
-    path("", index, name="detail"),
-    path("", include("django.contrib.auth.urls")),
-    path("register/", register_user, name="register_user"),
-    path("activate/<uidb64>/<token>/", activate_user, name="activate_user"),
+    path("", index, name="index"),
+    path("register/", register, name="register"),
+    path("login/", login_user, name="login_user"),
+    path("logout/", logout_view, name="logout"),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

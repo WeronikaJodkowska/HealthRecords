@@ -21,3 +21,6 @@ staticfiles/
 
 # Database backups
 db_dump/
+
+# Environment variables
+.env

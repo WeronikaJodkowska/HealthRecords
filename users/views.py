@@ -1,28 +1,15 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, get_user_model, login
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.contrib.auth.tokens import default_token_generator
-from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
-from django.core.mail import EmailMessage
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
-from django.template.loader import render_to_string
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView
 
-from .forms import LoginForm, RegistrationForm
-from .models import Profile
-from reference_information.xml_import import save_xml_tests
-UserModel = get_user_model()
+from .forms import LoginForm, RegisterForm
+from .services import create_user
 
 
 # Create your views here.
 def index(request):
-    save_xml_tests()
     return render(request, "base.html")
 
 
@@ -46,67 +33,41 @@ def validate_password_strength(value):
         raise ValidationError(_("Password must contain at least 1 letter."))
 
 
+def register(request):
+    if request.user.is_authenticated:
+        return redirect("/")
+
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            create_user(
+                email=form.cleaned_data["email"],
+                username=form.cleaned_data["email"],
+                password=form.cleaned_data["password"],
+            )
+            return redirect("/")
+    else:
+        form = RegisterForm()
+    return render(request, "users/register.html", {"form": form})
+
+
 def login_user(request):
+    if request.user.is_authenticated:
+        return redirect("/")
+
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(
-                request, username=cd["username"], password=cd["password"]
-            )
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect("ingredients/ingredient/list.html")
-                    # return HttpResponse('Authenticated successfully')
-                else:
-                    return HttpResponse("Disabled account")
-            else:
-                return HttpResponse("Invalid login")
+            user = authenticate(request=request, **form.cleaned_data)
+            if user is None:
+                return HttpResponse("BadRequest", status=400)
+            login(request, user)
+            return redirect("/")
     else:
         form = LoginForm()
     return render(request, "users/login.html", {"form": form})
 
 
-def register_user(request):
-    if request.method == "GET":
-        return render(request, "users/register.html")
-    if request.method == "POST":
-        user_form = RegistrationForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.set_password(user_form.cleaned_data["password"])
-            new_user.save()
-            current_site = get_current_site(request)
-            mail_subject = "Activate your account."
-            message = render_to_string(
-                "users/acc_active_email.html",
-                {
-                    "user": new_user,
-                    "domain": current_site.domain,
-                    "uid": urlsafe_base64_encode(force_bytes(new_user.pk)),
-                    "token": default_token_generator.make_token(new_user),
-                },
-            )
-            to_email = user_form.cleaned_data.get("email")
-            email = EmailMessage(mail_subject, message, to=[to_email])
-            email.send()
-            return render(request, "users/email_confirm.html")
-    else:
-        user_form = RegistrationForm()
-    return render(request, "users/register.html", {"user_form": user_form})
-
-
-def activate_user(request, uidb64, token):
-    try:
-        uid = urlsafe_base64_decode(uidb64).decode()
-        user = UserModel._default_manager.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-    if user is not None and default_token_generator.check_token(user, token):
-        user.is_active = True
-        user.save()
-        Profile.objects.create(user=user)
-        return render(request, "users/email_confirmed.html")
-    else:
-        return render(request, "users/email_not_confirmed.html")
+def logout_view(request):
+    logout(request)
+    return redirect("/")
