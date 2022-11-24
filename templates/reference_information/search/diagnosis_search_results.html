@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Diagnoses{% endblock %}
+{% block title %}Diagnoses search Results{% endblock %}
 
 {% block content %}
 
@@ -11,9 +11,9 @@
             <ol class="breadcrumb opacity-5">
                 <li><a href="{% url "users:index" %}">Home</a></li>
                 <li><a href="{% url "reference_information:index" %}">Reference information</a></li>
-                <li class="active">Diagnoses</li>
+                <li class="active">Diagnoses search results</li>
             </ol>
-            <h1 class="font-weight-300">Diagnoses</h1>
+            <h1 class="font-weight-300">Diagnoses search results</h1>
         </div>
     </div>
 
@@ -24,14 +24,14 @@
                 <div class="col-lg-8">
 
                     <div class="row">
-                        {% for diagnosis in diagnosis_list %}
+                        {% for obj in object_list %}
                             <!-- Diagnosis -->
                             <div class="col-lg-4 col-md-6 hvr-bob sm-mb-45px">
                                 <div class="background-white box-shadow margin-bottom-45px">
                                     <div class="padding-lr-30px padding-bottom-30px">
                                         <div class="pull-top-40px z-index-2 position-relative">
-                                            <span class="text-grey-2">{{ diagnosis.icd_code }}</span>
-                                            <h5 class="margin-tb-15px">{{ diagnosis.title }}</h5>
+                                            <span class="text-grey-2">{{ obj.icd_code }}</span>
+                                            <h5 class="margin-tb-15px">{{ obj.title }}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +40,6 @@
                         {% endfor %}
                     </div>
                     {% if is_paginated %}
-
                         <ul class="pagination pagination-md ">
                             <li class="page-item">
                                 {% if page_obj.has_previous %}
@@ -68,23 +67,6 @@
 
 
                 <div class="col-lg-4">
-                    <div class="background-white border-radius-10 margin-bottom-45px">
-                        <div class="padding-25px">
-                            <h3 class="margin-lr-20px"><i
-                                    class="fas fa-search margin-right-10px text-main-color"></i> Search Filter</h3>
-                            <!-- Listing Search -->
-                            <div class="listing-search">
-                                <form action="{% url 'reference_information:diagnosis_search' %}" method="get">
-                                    <div class="keywords margin-bottom-20px">
-                                        <input name="q" class="listing-form first border-radius-10" type="text"
-                                               placeholder="Name or icd code..." value="">
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- // Listing Search -->
-                        </div>
-                    </div>
-
 
                     <div class="featured-categorey">
                         <div class="row">

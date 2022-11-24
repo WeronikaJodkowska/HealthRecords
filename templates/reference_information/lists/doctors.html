@@ -32,8 +32,7 @@
                                         <div class="pull-top-40px z-index-2 position-relative">
                                             <span class="text-grey-2">{{ doctor.category }}</span>
                                             <h5 class="margin-tb-15px text-large">{{ doctor.name }}</h5>
-                                            <h5 class="margin-tb-15px"><a class="text-blue"
-                                                                          href="#">{{ doctor.speciality }}</a></h5>
+                                            <h5 class="margin-tb-15px">{{ doctor.speciality }}</h5>
                                         </div>
 
                                     </div>
@@ -42,29 +41,30 @@
                             <!-- // Doctor -->
                         {% endfor %}
                     </div>
-
-                    <ul class="pagination pagination-md ">
-                        <li class="page-item">
-                            {% if page_obj.has_previous %}
-                                <a class="page-link rounded-0" href="?page=1">&laquo; first</a>
-                                <a class="page-link rounded-0"
-                                   href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
-                            {% endif %}
-                        </li>
-
-                        <li class="page-current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                        </li>
-
-                        {% if page_obj.has_next %}
+                    {% if is_paginated %}
+                        <ul class="pagination pagination-md ">
                             <li class="page-item">
-                                <a class="page-link rounded-0"
-                                   href="?page={{ page_obj.next_page_number }}">Next</a>
-                                <a class="page-link rounded-0"
-                                   href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                                {% if page_obj.has_previous %}
+                                    <a class="page-link rounded-0" href="?page=1">&laquo; first</a>
+                                    <a class="page-link rounded-0"
+                                       href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+                                {% endif %}
                             </li>
-                        {% endif %}
-                    </ul>
+
+                            <li class="page-current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </li>
+
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link rounded-0"
+                                       href="?page={{ page_obj.next_page_number }}">Next</a>
+                                    <a class="page-link rounded-0"
+                                       href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
                 </div>
 
 
@@ -73,45 +73,53 @@
                     <div class="featured-categorey">
                         <div class="row">
                             <div class="col-6 margin-bottom-30px wow fadeInUp">
-                            <a href="{% url "reference_information:doctors_list" %}" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                <a href="{% url "reference_information:doctors_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
                                     <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
                                         <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="{%  static "/img/icon/categorie-1.png" %}" alt="">
+                                            <img src="{% static "/img/icon/categorie-1.png" %}" alt="">
                                         </div>
                                         Doctors
                                     </div>
                                 </a>
                             </div>
+
                             <div class="col-6 margin-bottom-30px wow fadeInUp" data-wow-delay="0.2s">
-                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                <a href="{% url "reference_information:med_inst_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
                                     <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
                                         <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="{%  static "/img/icon/categorie-2.png" %}" alt="">
+                                            <img src="{% static "/img/icon/categorie-2.png" %}" alt="">
                                         </div>
                                         Clinics
                                     </div>
                                 </a>
                             </div>
+
                             <div class="col-6 wow fadeInUp" data-wow-delay="0.4s">
-                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                <a href="{% url "reference_information:laboratory_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
                                     <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
                                         <div class="icon margin-bottom-15px">
-                                            <img src="{%  static "/img/icon/categorie-3.png" %}" alt="">
+                                            <img src="{% static "/img/icon/categorie-3.png" %}" alt="">
                                         </div>
                                         Labs
                                     </div>
                                 </a>
                             </div>
+
                             <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
-                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                <a href="{% url "reference_information:diagnosis_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
                                     <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
                                         <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="{%  static "/img/icon/categorie-4.png" %}" alt="">
+                                            <img src="{% static "/img/icon/categorie-4.png" %}" alt="">
                                         </div>
-                                        Pharmacies
+                                        Diagnoses
                                     </div>
                                 </a>
                             </div>
+
                         </div>
 
                     </div>
