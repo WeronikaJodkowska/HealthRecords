@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Doctors{% endblock %}
+
+{% block content %}
+
+    <div id="page-title" class="padding-tb-30px gradient-white">
+        <div class="container">
+            <ol class="breadcrumb opacity-5">
+                <li><a href="{% url "users:index" %}">Home</a></li>
+                <li><a href="{% url "reference_information:index" %}">Reference information</a></li>
+                <li class="active">Doctors</li>
+            </ol>
+            <h1 class="font-weight-300">Doctors</h1>
+        </div>
+    </div>
+
+
+    <div class="margin-tb-30px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <div class="row">
+                        {% for doctor in doctors_list %}
+                            <!-- Doctor -->
+                            <div class="col-lg-4 col-md-6 hvr-bob sm-mb-45px">
+                                <div class="background-white box-shadow margin-bottom-45px">
+                                    <div class="padding-lr-30px padding-bottom-30px">
+                                        <div class="pull-top-40px z-index-2 position-relative">
+                                            <span class="text-grey-2">{{ doctor.category }}</span>
+                                            <h5 class="margin-tb-15px text-large">{{ doctor.name }}</h5>
+                                            <h5 class="margin-tb-15px"><a class="text-blue"
+                                                                          href="#">{{ doctor.speciality }}</a></h5>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // Doctor -->
+                        {% endfor %}
+                    </div>
+
+                    <ul class="pagination pagination-md ">
+                        <li class="page-item">
+                            {% if page_obj.has_previous %}
+                                <a class="page-link rounded-0" href="?page=1">&laquo; first</a>
+                                <a class="page-link rounded-0"
+                                   href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+                            {% endif %}
+                        </li>
+
+                        <li class="page-current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </li>
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link rounded-0"
+                                   href="?page={{ page_obj.next_page_number }}">Next</a>
+                                <a class="page-link rounded-0"
+                                   href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+
+                <div class="col-lg-4">
+
+                    <div class="featured-categorey">
+                        <div class="row">
+                            <div class="col-6 margin-bottom-30px wow fadeInUp">
+                            <a href="{% url "reference_information:doctors_list" %}" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px opacity-7">
+                                            <img src="{%  static "/img/icon/categorie-1.png" %}" alt="">
+                                        </div>
+                                        Doctors
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 margin-bottom-30px wow fadeInUp" data-wow-delay="0.2s">
+                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px opacity-7">
+                                            <img src="{%  static "/img/icon/categorie-2.png" %}" alt="">
+                                        </div>
+                                        Clinics
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 wow fadeInUp" data-wow-delay="0.4s">
+                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px">
+                                            <img src="{%  static "/img/icon/categorie-3.png" %}" alt="">
+                                        </div>
+                                        Labs
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
+                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px opacity-7">
+                                            <img src="{%  static "/img/icon/categorie-4.png" %}" alt="">
+                                        </div>
+                                        Pharmacies
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -93,17 +93,19 @@
                         {#                                <li><a href="blog-single.html">Blog Single</a></li>#}
                         {#                            </ul>#}
                         {#                        </li>#}
-                        {#                        <li class="has-dropdown"><a href="#">Registration</a>#}
-                        {#                            <ul class="sub-menu">#}
-                        {#                                <li><a href="page-about.html">About Us </a></li>#}
-                        {#                                <li><a href="dashboard-add-listing.html">Add Listing</a></li>#}
-                        {#                                <li><a href="page-login.html">Login Page</a></li>#}
-                        {#                                <li><a href="{% url "users:register" %}">sign up</a></li>#}
-                        {#                                <li><a href="page-pricing-tables.html">Pricing Tables</a></li>#}
-                        {#                                <li><a href="page-contact-us.html">Contact Us</a></li>#}
-                        {#                                <li><a href="page-404.html">Pages 404</a></li>#}
-                        {#                            </ul>#}
-                        {#                        </li>#}
+                        <li class="has-dropdown"><a href="#">Reference Information</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url "reference_information:doctors_list" %}">Doctors</a></li>
+                                <li><a href="{% url "users:register" %}">Doctor specialties</a></li>
+                                <li><a href="{% url "users:register" %}">Medical institutions</a></li>
+                                <li><a href="{% url "users:register" %}">Laboratories</a></li>
+                                <li><a href="{% url "users:register" %}">Medical categories</a></li>
+                                <li><a href="{% url "users:register" %}">Diagnosis</a></li>
+                                <li><a href="{% url "users:register" %}">Symptoms</a></li>
+                                <li><a href="{% url "users:register" %}">Laboratory tests</a></li>
+                                <li><a href="{% url "users:register" %}">Allergies</a></li>
+                            </ul>
+                        </li>
                         {#                        <li><a href="page-contact-us.html">Conact Us</a></li>#}
                     </ul>
                 </div>
