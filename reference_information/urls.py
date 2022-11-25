@@ -9,6 +9,7 @@ from reference_information.views import (
     DoctorsSearchView,
     LaboratoryListView,
     LaboratorySearchView,
+    MedInstitutionDetailView,
     MedInstitutionListView,
     MedInstitutionSearchView,
     index,
@@ -25,5 +26,10 @@ urlpatterns = [
     path("labs/", LaboratoryListView.as_view(), name="laboratory_list"),
     path("labs_search/", LaboratorySearchView.as_view(), name="laboratory_search"),
     path("clinics/", MedInstitutionListView.as_view(), name="med_inst_list"),
+    path(
+        "clinic_detail/<int:pk>",
+        MedInstitutionDetailView.as_view(),
+        name="clinic_detail",
+    ),
     path("clinics_search/", MedInstitutionSearchView.as_view(), name="clinic_search"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

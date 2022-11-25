@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Clinic{% endblock %}
+
+{% block content %}
+
+    <div id="page-title" class="padding-tb-30px gradient-white">
+        <div class="container">
+            <ol class="breadcrumb opacity-5">
+                <li><a href="{% url "users:index" %}">Home</a></li>
+                <li><a href="{% url "reference_information:index" %}">Reference information</a></li>
+                <li class="active">Clinic</li>
+            </ol>
+            <h1 class="font-weight-300">Clinic</h1>
+        </div>
+    </div>
+
+
+    <div class="margin-tb-30px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <div class="margin-bottom-30px box-shadow">
+                        <div class="padding-30px background-white">
+                            <h3><i class="far fa-hospital margin-right-10px text-main-color"></i>{{ clinic.title }}</h3>
+                            <hr>
+                            <a class="text-blue" href="{{ clinic.site }}">{{ clinic.site }}</a>
+                        </div>
+                    </div>
+
+
+                    <div class="margin-bottom-30px box-shadow">
+                        <div class="padding-30px background-white">
+                            <h3><i class="margin-right-10px text-main-color"></i>Addresses</h3>
+                            <hr>
+
+                            <ul class="commentlist padding-0px margin-0px list-unstyled text-grey-3">
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
+                                    <div class="margin-left-85px">
+                                        <h3>1. {{ clinic.address_1 }}</h3>
+                                    </div>
+                                </li>
+
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
+                                    <div class="margin-left-85px">
+                                        <h3>2. {{ clinic.address_2 }}</h3>
+                                    </div>
+                                </li>
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
+                                    <div class="margin-left-85px">
+                                        <h3>3. {{ clinic.address_3 }}</h3>
+                                    </div>
+                                </li>
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
+                                    <div class="margin-left-85px">
+                                        <h3>4. {{ clinic.address_4 }}</h3>
+                                    </div>
+                                </li>
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
+                                    <div class="margin-left-85px">
+                                        <h3>5. {{ clinic.address_5 }}</h3>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="margin-bottom-30px box-shadow">
+                        <div class="padding-30px background-white">
+                            <h3><i class="margin-right-10px text-main-color"></i>Phones</h3>
+                            <hr>
+
+                            <ul class="commentlist padding-0px margin-0px list-unstyled text-grey-3">
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
+                                    <div class="margin-left-85px">
+                                        <h3>1. {{ clinic.phone_1 }}</h3>
+                                    </div>
+                                </li>
+
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
+                                    <div class="margin-left-85px">
+                                        <h3>2. {{ clinic.phone_2 }}</h3>
+                                    </div>
+                                </li>
+                                <li class="border-bottom-1 border-grey-1 margin-bottom-20px">
+                                    <div class="margin-left-85px">
+                                        <h3>3. {{ clinic.phone_3 }}</h3>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="background-white border-radius-10 margin-bottom-45px">
+                        <div class="padding-25px">
+                            <h3 class="margin-lr-20px"><i
+                                    class="fas fa-search margin-right-10px text-main-color"></i> Search Filter</h3>
+                            <!-- Listing Search -->
+                            <div class="listing-search">
+                                <form action="{% url 'reference_information:clinic_search' %}" method="get">
+                                    <div class="keywords margin-bottom-20px">
+                                        <input name="q" class="listing-form first border-radius-10" type="text"
+                                               placeholder="Name or icd code..." value="">
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- // Listing Search -->
+                        </div>
+                    </div>
+
+
+                    <div class="featured-category">
+                        <div class="row">
+
+                            <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
+                                <a href="{% url "reference_information:diagnosis_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px opacity-7">
+                                            <img src="{% static "/img/icon/categorie-4.png" %}" alt="">
+                                        </div>
+                                        Diagnoses
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-6 margin-bottom-30px wow fadeInUp">
+                                <a href="{% url "reference_information:doctors_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px opacity-7">
+                                            <img src="{% static "/img/icon/categorie-1.png" %}" alt="">
+                                        </div>
+                                        Doctors
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-6 margin-bottom-30px wow fadeInUp" data-wow-delay="0.2s">
+                                <a href="{% url "reference_information:med_inst_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px opacity-7">
+                                            <img src="{% static "/img/icon/categorie-2.png" %}" alt="">
+                                        </div>
+                                        Clinics
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-6 wow fadeInUp" data-wow-delay="0.4s">
+                                <a href="{% url "reference_information:laboratory_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px">
+                                            <img src="{% static "/img/icon/categorie-3.png" %}" alt="">
+                                        </div>
+                                        Labs
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

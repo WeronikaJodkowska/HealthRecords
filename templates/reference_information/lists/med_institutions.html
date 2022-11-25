@@ -24,16 +24,16 @@
                 <div class="col-lg-8">
 
                     <div class="row">
-                        {% for obj in med_inst_list %}
+                        {% for clinic in med_inst_list %}
                             <!-- Clinic -->
                             <div class="col-lg-4 col-md-6 hvr-bob sm-mb-45px">
                                 <div class="background-white box-shadow margin-bottom-45px">
                                     <div class="padding-lr-30px padding-bottom-30px">
                                         <div class="pull-top-40px z-index-2 position-relative">
                                             <br>
-                                            <h5 class="margin-tb-15px">{{ obj.title }}</h5>
-                                            <span class="text-grey-2">{{ obj.phone_1 }}</span>
-                                            <a class="text-blue" href="{{ obj.site }}">{{ obj.site }}</a>
+                                            <h5 class="margin-tb-15px"><a href="{% url "reference_information:clinic_detail" clinic.id %}">{{ clinic.title }}</a></h5>
+                                            <span class="text-grey-2">{{ clinic.phone_1 }}</span>
+                                            <a class="text-blue" href="{{ clinic.site }}">{{ clinic.site }}</a>
                                         </div>
 
                                     </div>
@@ -80,7 +80,7 @@
                                 <form action="{% url 'reference_information:clinic_search' %}" method="get">
                                     <div class="keywords margin-bottom-20px">
                                         <input name="q" class="listing-form first border-radius-10" type="text"
-                                               placeholder="Name or icd code..." value="">
+                                               placeholder="Clinic name..." value="">
                                     </div>
                                 </form>
                             </div>

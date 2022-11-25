@@ -83,6 +83,12 @@ class MedInstitutionListView(ListView):
     paginate_by = 10
 
 
+class MedInstitutionDetailView(DetailView):
+    model = MedInstitution
+    context_object_name = "clinic"
+    template_name = "reference_information/details/clinic_detail.html"
+
+
 class MedInstitutionSearchView(ListView):
     model = MedInstitution
     template_name = "reference_information/search/clinic_search_results.html"
