@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Diagnoses{% endblock %}
+{% block title %}Doctors search results{% endblock %}
 
 {% block content %}
 
@@ -11,9 +11,9 @@
             <ol class="breadcrumb opacity-5">
                 <li><a href="{% url "users:index" %}">Home</a></li>
                 <li><a href="{% url "reference_information:index" %}">Reference information</a></li>
-                <li class="active">Diagnoses</li>
+                <li class="active">Doctors search results</li>
             </ol>
-            <h1 class="font-weight-300">Diagnoses</h1>
+            <h1 class="font-weight-300">Doctors search results</h1>
         </div>
     </div>
 
@@ -24,23 +24,22 @@
                 <div class="col-lg-8">
 
                     <div class="row">
-                        {% for diagnosis in diagnosis_list %}
-                            <!-- Diagnosis -->
+                        {% for obj in object_list %}
+                            <!-- Doctor -->
                             <div class="col-lg-4 col-md-6 hvr-bob sm-mb-45px">
                                 <div class="background-white box-shadow margin-bottom-45px">
                                     <div class="padding-lr-30px padding-bottom-30px">
                                         <div class="pull-top-40px z-index-2 position-relative">
-                                            <span class="text-grey-2">{{ diagnosis.icd_code }}</span>
-                                            <h5 class="margin-tb-15px">{{ diagnosis.title }}</h5>
+                                            <span class="text-grey-2">{{ obj.speciality }}</span>
+                                            <h5 class="margin-tb-15px">{{ obj.name }}</h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- // Diagnosis -->
+                            <!-- // Doctor -->
                         {% endfor %}
                     </div>
                     {% if is_paginated %}
-
                         <ul class="pagination pagination-md ">
                             <li class="page-item">
                                 {% if page_obj.has_previous %}
@@ -68,39 +67,9 @@
 
 
                 <div class="col-lg-4">
-                    <div class="background-white border-radius-10 margin-bottom-45px">
-                        <div class="padding-25px">
-                            <h3 class="margin-lr-20px"><i
-                                    class="fas fa-search margin-right-10px text-main-color"></i> Search Filter</h3>
-                            <!-- Listing Search -->
-                            <div class="listing-search">
-                                <form action="{% url 'reference_information:diagnosis_search' %}" method="get">
-                                    <div class="keywords margin-bottom-20px">
-                                        <input name="q" class="listing-form first border-radius-10" type="text"
-                                               placeholder="Name or icd code..." value="">
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- // Listing Search -->
-                        </div>
-                    </div>
 
-
-                    <div class="featured-category">
+                    <div class="featured-categorey">
                         <div class="row">
-
-                            <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
-                                <a href="{% url "reference_information:diagnosis_list" %}"
-                                   class="d-block border-radius-15 hvr-float hvr-sh2">
-                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
-                                        <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="{% static "/img/icon/categorie-4.png" %}" alt="">
-                                        </div>
-                                        Diagnoses
-                                    </div>
-                                </a>
-                            </div>
-
                             <div class="col-6 margin-bottom-30px wow fadeInUp">
                                 <a href="{% url "reference_information:doctors_list" %}"
                                    class="d-block border-radius-15 hvr-float hvr-sh2">
@@ -137,7 +106,20 @@
                                 </a>
                             </div>
 
+                            <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
+                                <a href="{% url "reference_information:diagnosis_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px opacity-7">
+                                            <img src="{% static "/img/icon/categorie-4.png" %}" alt="">
+                                        </div>
+                                        Diagnoses
+                                    </div>
+                                </a>
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>

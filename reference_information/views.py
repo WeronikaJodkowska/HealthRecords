@@ -39,6 +39,22 @@ class DoctorsListView(ListView):
     paginate_by = 10
 
 
+class DoctorsSearchView(ListView):
+    model = Doctor
+    template_name = "reference_information/search/doctors_search_results.html"
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list = Doctor.objects.filter(
+            Q(name__icontains=query) | Q(speciality__title__icontains=query)
+        )
+
+        if not object_list:
+            object_list = Diagnosis.objects.all()
+
+        return object_list
+
+
 class LaboratoryListView(ListView):
     model = Laboratory
     context_object_name = "laboratory_list"

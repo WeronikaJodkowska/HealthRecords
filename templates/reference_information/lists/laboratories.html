@@ -104,50 +104,58 @@
                     </div>
 
 
-                    <div class="featured-categorey">
+                    <div class="featured-category">
                         <div class="row">
-                            <div class="col-6 margin-bottom-30px wow fadeInUp">
-                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+
+                            <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
+                                <a href="{% url "reference_information:diagnosis_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
                                     <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
                                         <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="assets/img/icon/categorie-1.png" alt="">
+                                            <img src="{% static "/img/icon/categorie-4.png" %}" alt="">
+                                        </div>
+                                        Diagnoses
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-6 margin-bottom-30px wow fadeInUp">
+                                <a href="{% url "reference_information:doctors_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px opacity-7">
+                                            <img src="{% static "/img/icon/categorie-1.png" %}" alt="">
                                         </div>
                                         Doctors
                                     </div>
                                 </a>
                             </div>
+
                             <div class="col-6 margin-bottom-30px wow fadeInUp" data-wow-delay="0.2s">
-                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                <a href="{% url "reference_information:med_inst_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
                                     <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
                                         <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="assets/img/icon/categorie-2.png" alt="">
+                                            <img src="{% static "/img/icon/categorie-2.png" %}" alt="">
                                         </div>
                                         Clinics
                                     </div>
                                 </a>
                             </div>
+
                             <div class="col-6 wow fadeInUp" data-wow-delay="0.4s">
-                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                <a href="{% url "reference_information:laboratory_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
                                     <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
                                         <div class="icon margin-bottom-15px">
-                                            <img src="assets/img/icon/categorie-3.png" alt="">
+                                            <img src="{% static "/img/icon/categorie-3.png" %}" alt="">
                                         </div>
                                         Labs
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
-                                <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
-                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
-                                        <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="assets/img/icon/categorie-4.png" alt="">
-                                        </div>
-                                        Pharmacies
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
