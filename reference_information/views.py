@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from .models import Diagnosis, Doctor, Laboratory, MedInstitution
 
@@ -83,17 +83,15 @@ class MedInstitutionListView(ListView):
     paginate_by = 10
 
 
-class DoctorsSearchView(ListView):
-    model = Doctor
-    template_name = "reference_information/search/doctors_search_results.html"
+class MedInstitutionSearchView(ListView):
+    model = MedInstitution
+    template_name = "reference_information/search/clinic_search_results.html"
 
     def get_queryset(self):
         query = self.request.GET.get("q")
-        object_list = Doctor.objects.filter(
-            Q(name__icontains=query) | Q(speciality__title__icontains=query)
-        )
+        object_list = MedInstitution.objects.filter(Q(title__icontains=query))
 
         if not object_list:
-            object_list = Diagnosis.objects.all()
+            object_list = MedInstitution.objects.all()
 
         return object_list

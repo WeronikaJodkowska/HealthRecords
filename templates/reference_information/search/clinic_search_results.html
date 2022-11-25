@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Clinics{% endblock %}
+{% block title %}Clinics search results{% endblock %}
 
 {% block content %}
 
@@ -11,9 +11,9 @@
             <ol class="breadcrumb opacity-5">
                 <li><a href="{% url "users:index" %}">Home</a></li>
                 <li><a href="{% url "reference_information:index" %}">Reference information</a></li>
-                <li class="active">Clinics</li>
+                <li class="active">Clinics search results</li>
             </ol>
-            <h1 class="font-weight-300">Clinics</h1>
+            <h1 class="font-weight-300">Clinics search results</h1>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
                 <div class="col-lg-8">
 
                     <div class="row">
-                        {% for obj in med_inst_list %}
+                        {% for obj in object_list %}
                             <!-- Clinic -->
                             <div class="col-lg-4 col-md-6 hvr-bob sm-mb-45px">
                                 <div class="background-white box-shadow margin-bottom-45px">
@@ -70,24 +70,6 @@
 
 
                 <div class="col-lg-4">
-
-                    <div class="background-white border-radius-10 margin-bottom-45px">
-                        <div class="padding-25px">
-                            <h3 class="margin-lr-20px"><i
-                                    class="fas fa-search margin-right-10px text-main-color"></i> Search Filter</h3>
-                            <!-- Listing Search -->
-                            <div class="listing-search">
-                                <form action="{% url 'reference_information:clinic_search' %}" method="get">
-                                    <div class="keywords margin-bottom-20px">
-                                        <input name="q" class="listing-form first border-radius-10" type="text"
-                                               placeholder="Name or icd code..." value="">
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- // Listing Search -->
-                        </div>
-                    </div>
-
 
                     <div class="featured-category">
                         <div class="row">
@@ -146,5 +128,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
