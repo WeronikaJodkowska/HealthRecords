@@ -3,10 +3,8 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from reference_information.views import (DiagnosisListView,
-                                         DiagnosisSearchView,
-                                         DoctorsListView,
-                                         DoctorsSearchView,
-                                         LaboratoryListView,
+                                         DiagnosisSearchView, DoctorsListView,
+                                         DoctorsSearchView, LaboratoryListView,
                                          MedInstitutionListView, index)
 
 app_name = "reference_information"

@@ -68,8 +68,21 @@
 
                 <div class="col-lg-4">
 
-                    <div class="featured-categorey">
+                    <div class="featured-category">
                         <div class="row">
+
+                            <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
+                                <a href="{% url "reference_information:diagnosis_list" %}"
+                                   class="d-block border-radius-15 hvr-float hvr-sh2">
+                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
+                                        <div class="icon margin-bottom-15px opacity-7">
+                                            <img src="{% static "/img/icon/categorie-4.png" %}" alt="">
+                                        </div>
+                                        Diagnoses
+                                    </div>
+                                </a>
+                            </div>
+
                             <div class="col-6 margin-bottom-30px wow fadeInUp">
                                 <a href="{% url "reference_information:doctors_list" %}"
                                    class="d-block border-radius-15 hvr-float hvr-sh2">
@@ -106,20 +119,7 @@
                                 </a>
                             </div>
 
-                            <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
-                                <a href="{% url "reference_information:diagnosis_list" %}"
-                                   class="d-block border-radius-15 hvr-float hvr-sh2">
-                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
-                                        <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="{% static "/img/icon/categorie-4.png" %}" alt="">
-                                        </div>
-                                        Diagnoses
-                                    </div>
-                                </a>
-                            </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>

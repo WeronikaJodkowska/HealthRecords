@@ -17,6 +17,16 @@
                 <div class="col-lg-7">
                     <div class="row">
                         <div class="col-md-3 col-6 sm-mb-30px wow fadeInUp">
+                            <a href="{% url "reference_information:diagnosis_list" %}" class="d-block border-radius-15 hvr-float hvr-sh2">
+                                <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
+                                    <div class="icon margin-bottom-15px opacity-7">
+                                        <img src="{% static 'img/icon/categorie-4.png' %}" alt="">
+                                    </div>
+                                    Diagnoses
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6 sm-mb-30px wow fadeInUp" data-wow-delay="0.2s">
                             <a href="{% url "reference_information:doctors_list" %}" class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
                                     <div class="icon margin-bottom-15px opacity-7">
@@ -26,33 +36,23 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-3 col-6 sm-mb-30px wow fadeInUp" data-wow-delay="0.2s">
-                            <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                        <div class="col-md-3 col-6 wow fadeInUp" data-wow-delay="0.4s">
+                            <a href="{% url "reference_information:med_inst_list" %}" class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
-                                    <div class="icon margin-bottom-15px opacity-7">
+                                    <div class="icon margin-bottom-15px">
                                         <img src="{% static 'img/icon/categorie-2.png' %}" alt="">
                                     </div>
                                     Clinics
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-3 col-6 wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                        <div class="col-md-3 col-6 wow fadeInUp" data-wow-delay="0.6s">
+                            <a href="{% url "reference_information:laboratory_list" %}" class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
-                                    <div class="icon margin-bottom-15px">
+                                    <div class="icon margin-bottom-15px opacity-7">
                                         <img src="{% static 'img/icon/categorie-3.png' %}" alt="">
                                     </div>
                                     Labs
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3 col-6 wow fadeInUp" data-wow-delay="0.6s">
-                            <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
-                                <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
-                                    <div class="icon margin-bottom-15px opacity-7">
-                                        <img src="{% static 'img/icon/categorie-4.png' %}" alt="">
-                                    </div>
-                                    Pharmacies
                                 </div>
                             </a>
                         </div>

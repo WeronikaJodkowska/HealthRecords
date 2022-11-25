@@ -95,15 +95,10 @@
                         {#                        </li>#}
                         <li class="has-dropdown"><a href="#">Reference Information</a>
                             <ul class="sub-menu">
+                                <li><a href="{% url "reference_information:diagnosis_list" %}">Diagnoses</a></li>
                                 <li><a href="{% url "reference_information:doctors_list" %}">Doctors</a></li>
-                                <li><a href="{% url "users:register" %}">Doctor specialties</a></li>
-                                <li><a href="{% url "users:register" %}">Medical institutions</a></li>
-                                <li><a href="{% url "users:register" %}">Laboratories</a></li>
-                                <li><a href="{% url "users:register" %}">Medical categories</a></li>
-                                <li><a href="{% url "users:register" %}">Diagnosis</a></li>
-                                <li><a href="{% url "users:register" %}">Symptoms</a></li>
-                                <li><a href="{% url "users:register" %}">Laboratory tests</a></li>
-                                <li><a href="{% url "users:register" %}">Allergies</a></li>
+                                <li><a href="{% url "reference_information:med_inst_list" %}">Clinics</a></li>
+                                <li><a href="{% url "reference_information:laboratory_list" %}">Laboratories</a></li>
                             </ul>
                         </li>
                         {#                        <li><a href="page-contact-us.html">Conact Us</a></li>#}
