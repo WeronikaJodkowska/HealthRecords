@@ -1,8 +1,16 @@
 from django.contrib import admin
 
-from .models import (Allergy, Diagnosis, Doctor, DoctorSpecialization,
-                     HealthTest, Laboratory, MedCategory, MedInstitution,
-                     Symptom)
+from .models import (
+    Allergy,
+    Diagnosis,
+    Doctor,
+    DoctorSpecialization,
+    HealthTest,
+    Laboratory,
+    MedCategory,
+    MedInstitution,
+    Symptom,
+)
 
 
 @admin.register(Allergy)
