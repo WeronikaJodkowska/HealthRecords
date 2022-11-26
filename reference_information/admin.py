@@ -21,11 +21,12 @@ class AllergyAdmin(admin.ModelAdmin):
 @admin.register(Diagnosis)
 class DiagnosisAdmin(admin.ModelAdmin):
     list_display = ["icd_code", "title"]
+    search_fields = ["icd_code", "title"]
 
 
 @admin.register(Doctor)
 class DoctorAdmin(admin.ModelAdmin):
-    list_display = ["name"]
+    list_display = ["name", "speciality"]
 
 
 @admin.register(DoctorSpecialization)
@@ -35,7 +36,7 @@ class DoctorSpecializationAdmin(admin.ModelAdmin):
 
 @admin.register(HealthTest)
 class HealthTestAdmin(admin.ModelAdmin):
-    list_display = ["title"]
+    list_display = ["test_code", "title"]
 
 
 @admin.register(Laboratory)
