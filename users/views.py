@@ -5,9 +5,18 @@ from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 
 from .forms import LoginForm, RegisterForm, ProfileEditForm, UpdateUserForm
 from .services import create_user
+
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    template_name = 'users/change_password.html'
+    success_message = "Successfully Changed Your Password"
+    success_url = reverse_lazy("users:edit_profile")
 
 
 # Create your views here.
