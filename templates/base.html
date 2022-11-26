@@ -51,19 +51,21 @@
             <div class="row">
                 <div class="col-lg-2 col-md-12">
                     <a id="logo" href="{% url "users:index" %}" class="d-inline-block margin-tb-15px"><img
-                            src="{% static 'img/logo-1.png' %}" alt=""><h6 class="text-medium text-main-color font-weight-300 margin-bottom-15px">HealthRecords</h6></a>
+                            src="{% static 'img/logo-1.png' %}" alt=""><h6
+                            class="text-medium text-main-color font-weight-300 margin-bottom-15px">HealthRecords</h6>
+                    </a>
                     <a class="mobile-toggle padding-13px background-main-color" href="#"><i class="fas fa-bars"></i></a>
                 </div>
                 <div class="col-lg-7 col-md-12 position-inherit">
                     <ul id="menu-main" class="nav-menu float-lg-right link-padding-tb-20px">
-                        {#                        <li class="has-dropdown"><a href="#">Home</a>#}
-                        {#                            <ul class="sub-menu">#}
-                        {#                                <li><a href="index.html">Home 1</a></li>#}
-                        {#                                <li><a href="home-2.html">Home 2</a></li>#}
-                        {#                                <li><a href="home-3.html">Home 3</a></li>#}
-                        {#                                <li><a href="home-4.html">Home 4</a></li>#}
-                        {#                            </ul>#}
-                        {#                        </li>#}
+                        <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Appointments</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url "visit_records:visit_list" %}">All appointments</a></li>
+                                <li><a href="home-2.html">Home 2</a></li>
+                                <li><a href="home-3.html">Home 3</a></li>
+                                <li><a href="home-4.html">Home 4</a></li>
+                            </ul>
+                        </li>
                         {#                        <li class="has-dropdown"><a href="#">Listings</a>#}
                         {#                            <ul class="sub-menu">#}
                         {#                                <li><a href="map-grid-layout.html">Map - Grid Layout </a></li>#}
@@ -100,7 +102,7 @@
                                 <li><a href="{% url "reference_information:med_inst_list" %}">Clinics</a></li>
                                 <li><a href="{% url "reference_information:laboratory_list" %}">Laboratories</a></li>
                             </ul>
-                            </a>
+                        </a>
                         </li>
                         {#                        <li><a href="page-contact-us.html">Conact Us</a></li>#}
                     </ul>
@@ -111,7 +113,7 @@
 
                         <hr class="margin-bottom-0px d-block d-sm-none">
                         <div class="padding-lr-20px d-inline-block text-up-small">
-                            Hello, <a href="{% url 'users:edit_profile'%}"
+                            Hello, <a href="{% url 'users:edit_profile' %}"
                                       class="margin-tb-20px d-inline-block text-up-small ">
                             {{ request.user.username }}</a>
                         </div>

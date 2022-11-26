@@ -1,14 +1,14 @@
-# from django.conf import settings
-# from django.conf.urls.static import static
-# from django.urls import path
-#
-# from reference_information.views import
-#
-# app_name = "visit_records"
-#
-# urlpatterns = [
-#     path("", index, name="index"),
-#     path("diagnoses/", DiagnosisListView.as_view(), name="diagnosis_list"),
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path
+
+from .views import AppointmentListView
+
+app_name = "visit_records"
+
+urlpatterns = [
+    # path("", index, name="index"),
+    path("", AppointmentListView.as_view(), name="visit_list"),
 #     path("diagnosis_search/", DiagnosisSearchView.as_view(), name="diagnosis_search"),
 #     path("doctors/", DoctorsListView.as_view(), name="doctors_list"),
 #     path("doctors_search/", DoctorsSearchView.as_view(), name="doctors_search"),
@@ -21,4 +21,4 @@
 #         name="clinic_detail",
 #     ),
 #     path("clinics_search/", MedInstitutionSearchView.as_view(), name="clinic_search"),
-# ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from reference_information.models import (
@@ -19,6 +20,7 @@ class Appointment(models.Model):
     class Meta:
         verbose_name_plural = "Appointments"
 
+    user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     med_category = models.ForeignKey(
         MedCategory, default=None, on_delete=models.CASCADE
     )
