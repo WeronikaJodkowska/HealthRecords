@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.auth.models import User
 
 from reference_information.models import Allergy
 
@@ -24,9 +25,9 @@ class Profile(models.Model):
 
     TRUE_FALSE_CHOICES = ((True, "Yes"), (False, "No"))
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, blank=True, null=True)
-    surname = models.CharField(max_length=200, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # name = models.CharField(max_length=200, blank=True, null=True)
+    # surname = models.CharField(max_length=200, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     blood_type = models.CharField(
         max_length=3, choices=BLOOD_TYPE_CHOICES, blank=True, null=True
@@ -36,7 +37,6 @@ class Profile(models.Model):
     )
     height = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(blank=True, null=True)
-    allergy = models.ManyToManyField(Allergy, blank=True, related_name="user_allergies")
 
     def __str__(self):
         return f"Profile for user {self.user.username}"

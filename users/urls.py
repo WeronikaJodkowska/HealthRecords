@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from users.views import index, login_user, logout_view, register
+from users.views import index, login_user, logout_view, register, edit_profile
 
 app_name = "users"
 
@@ -26,4 +26,5 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("login/", login_user, name="login_user"),
     path("logout/", logout_view, name="logout"),
+    path("profile/", edit_profile, name="edit_profile"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

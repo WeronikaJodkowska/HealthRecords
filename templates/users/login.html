@@ -6,6 +6,17 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
+
+     <div id="page-title" class="padding-tb-30px gradient-white">
+        <div class="container text-center">
+            <ol class="breadcrumb opacity-5">
+                <li><a href="{% url "users:index" %}">Home</a></li>
+                <li class="active">Login</li>
+            </ol>
+            <h1 class="font-weight-300">Login Page</h1>
+        </div>
+    </div>
+
     <div class="container margin-bottom-10px">
         <!--======= log_in_page =======-->
         <div id="log-in" class="site-form log-in-form box-shadow border-radius-10">
@@ -13,7 +24,7 @@
                 <form method="POST" class="post-form">
                     {{ form|crispy }}
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                     <div class="or"></div>
                     <p>Don't you have an account? <a href="{% url "users:register" %}">Register Now!</a></p>
                 </form>

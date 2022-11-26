@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+    <div id="page-title" class="padding-tb-30px gradient-white">
+        <div class="container text-center">
+            <ol class="breadcrumb opacity-5">
+                <li><a href="{% url "users:index" %}">Home</a></li>
+                <li class="active">Profile</li>
+            </ol>
+            <h1 class="font-weight-300">Edit profile</h1>
+        </div>
+    </div>
+
+    {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div id="form_errors">
+                {% for key, value in user_form.errors.items %}
+                    <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="container margin-bottom-10px">
+        <!--======= log_in_page =======-->
+        <div id="log-in" class="site-form log-in-form box-shadow border-radius-10">
+            <div class="form-output">
+                <form method="POST" enctype="multipart/form-data" class="post-form">
+
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="small mb-1">Username:</label>
+                                {{ user_form.username }}
+                                <label class="small mb-1">Email:</label>
+                                {{ user_form.email }}
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1">First name:</label>
+                                {{ user_form.first_name }}
+                                <label class="small mb-1">Last name:</label>
+                                {{ user_form.last_name }}
+                                <label class="small mb-1">Date of birth:</label>
+                                {{ profile_form.date_of_birth }}
+                                <br>
+                                <label class="small mb-1">Blood type:</label>
+                                {{ profile_form.blood_type }}
+                                <label class="small mb-1">Gender:</label>
+                                {{ profile_form.gender }}
+                                <label class="small mb-1">Height:</label>
+                                {{ profile_form.height }}
+                                <label class="small mb-1">Weight:</label>
+                                {{ profile_form.weight }}
+                            </div>
+                            <div class="form-group">
+                                <a href="#">Change Password</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
