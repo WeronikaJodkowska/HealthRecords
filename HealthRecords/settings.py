@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "xml.etree.ElementTree",
+    "easy_select2",
     "django_filters",
     "crispy_forms",
     "crispy_bootstrap5",
