@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Appointments{% endblock %}
+
+{% block content %}
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark z-index-9  fixed-top" id="mainNav">
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+            <ul class="navbar-nav navbar-sidenav background-main-color admin-nav" id="admin-nav">
+                <li class="nav-item">
+                    <span class="nav-title-text">Main</span>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                    <a class="nav-link" href="dashboard-home.html">
+                        <i class="fas fa-fw fa-home"></i><span class="nav-link-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
+                    <a class="nav-link" href="{% url "visit_records:visit_list" %}">
+                        <i class="fa fa-fw fa-table"></i>
+                        <span class="nav-link-text">My Appointments</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Favorites">
+                    <a class="nav-link" href="dashboard-my-favorites.html">
+                        <i class="fa fa-fw fa-heart"></i>
+                        <span class="nav-link-text">My Favorites</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
+                    <a class="nav-link" href="dashboard-reviews.html">
+                        <i class="fa fa-fw fa-star"></i>
+                        <span class="nav-link-text">Reviews</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-title-text">Example Pages</span>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
+                    <a class="nav-link" href="dashboard-bookings.html">
+                        <i class="far fa-fw fa-bookmark"></i>
+                        <span class="nav-link-text">Bookings</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
+                    <a class="nav-link active" href="{% url "visit_records:add_appointment" %}">
+                        <i class="fa fa-fw fa-plus-circle"></i>
+                        <span class="nav-link-text">Add an Appointment</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Packages">
+                    <a class="nav-link" href="dashboard-packages.html">
+                        <i class="far fa-fw fa-list-alt"></i>
+                        <span class="nav-link-text">Packages</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <span class="nav-title-text">User Area</span>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Profile">
+                    <a class="nav-link" href="{% url "users:edit_profile" %}">
+                        <i class="fa fa-fw fa-user-circle"></i>
+                        <span class="nav-link-text">My Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sing Out">
+                    <a class="nav-link" href="{% url "users:logout" %}" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out-alt"></i>
+                        <span class="nav-link-text">Sing Out</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="container-fluid overflow-hidden">
+            <div class="row margin-tb-90px margin-lr-10px sm-mrl-0px">
+
+                <div id="page-title" class="padding-tb-30px gradient-white">
+                    <div class="container">
+                        <ol class="breadcrumb opacity-5">
+                            <li><a href="{% url "users:index" %}">Home</a></li>
+                            <li><a href="{% url "visit_records:visit_list" %}">Appointments</a></li>
+                            <li class="active">Add an Appointment</li>
+                        </ol>
+                        <h1 class="font-weight-300">Add an Appointment</h1>
+                    </div>
+                </div>
+
+                <div class="margin-tb-45px full-width">
+                    <div class="padding-30px background-white border-radius-20 box-shadow">
+                        <h3><i class="far fa-list-alt margin-right-10px text-main-color"></i> Basic Informations </h3>
+                        <hr>
+                        <form>
+                            <div class="form-group margin-bottom-20px">
+                                <label><i class="far fa-list-alt margin-right-10px"></i> Listing Title</label>
+                                <input type="text" class="form-control form-control-sm" id="ListingTitle"
+                                       placeholder="Listing Title">
+                            </div>
+                            <div class="form-group margin-bottom-20px">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label><i class="far fa-folder-open margin-right-10px"></i> Category</label>
+                                        <select class="form-control form-control-sm">
+                                            <option>All Category</option>
+                                            <option>Doctors</option>
+                                            <option>Clinics</option>
+                                            <option>Labs</option>
+                                            <option>Pharmacies</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label><i class="far fa-map margin-right-10px"></i> Location</label>
+                                        <select class="form-control form-control-sm">
+                                            <option>West Virginia</option>
+                                            <option>New Hampshire</option>
+                                            <option>Connecticut</option>
+                                            <option>Rhode Island</option>
+                                            <option>South Dakota</option>
+                                            <option>North Dakota</option>
+                                            <option>Wisconsin</option>
+                                            <option>North Carolina</option>
+                                            <option>Tennessee</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group margin-bottom-20px">
+                                <label><i class="far fa-flag margin-right-10px"></i> Keywords</label>
+                                <input type="text" class="form-control form-control-sm" id="ListingKeywords"
+                                       placeholder="Keywords">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 margin-bottom-20px">
+                                    <label><i class="fas fa-mobile-alt margin-right-10px"></i> Phone</label>
+                                    <input type="text" class="form-control form-control-sm" placeholder="002229456987">
+                                </div>
+                                <div class="col-md-6 margin-bottom-20px">
+                                    <label><i class="far fa-envelope-open margin-right-10px"></i> Email</label>
+                                    <input type="text" class="form-control form-control-sm"
+                                           placeholder="info@yourname.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label><i class="fas fa-link margin-right-10px"></i> Website</label>
+                                    <input type="text" class="form-control form-control-sm"
+                                           placeholder="www.your-site.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label><i class="fas fa-info margin-right-10px"></i> Description</label>
+                                    <input type="text" class="form-control form-control-sm" placeholder="description">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div class="margin-bottom-45px full-width">
+                    <div class="padding-30px background-white border-radius-20 box-shadow">
+                        <h3><i class="far fa-list-alt margin-right-10px text-main-color"></i> Description </h3>
+                        <hr>
+                        <div class="margin-bottom-20px">
+                            <textarea class="form-control" placeholder="Enter  Admin Message  here" id="exampleTextarea"
+                                      rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fas fa-video margin-right-10px"></i> Video URL</label>
+                                <input type="text" class="form-control form-control-sm" placeholder="http://www.">
+                            </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="far fa-images margin-right-10px"></i> Image URL</label>
+                                <input type="text" class="form-control form-control-sm" placeholder="http://www.">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="margin-bottom-45px full-width">
+                    <div class="padding-30px background-white border-radius-20 box-shadow">
+                        <h3><i class="far fa-list-alt margin-right-10px text-main-color"></i> Socials links </h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fab fa-facebook margin-right-10px"></i> Facebook</label>
+                                <input type="text" class="form-control form-control-sm"
+                                       placeholder="http://www.facebook.com">
+                            </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fab fa-twitter margin-right-10px"></i> Twitter</label>
+                                <input type="text" class="form-control form-control-sm"
+                                       placeholder="http://www.twitter.com">
+                            </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fab fa-youtube margin-right-10px"></i> Youtube</label>
+                                <input type="text" class="form-control form-control-sm"
+                                       placeholder="http://www.youtube.com">
+                            </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fab fa-google-plus-g margin-right-10px"></i> Google Pluse</label>
+                                <input type="text" class="form-control form-control-sm"
+                                       placeholder="http://www.google-plus.com">
+                            </div>
+                            <div class="col-md-6 margin-bottom-20px">
+                                <label><i class="fab fa-whatsapp margin-right-10px"></i> Whatsapp</label>
+                                <input type="text" class="form-control form-control-sm"
+                                       placeholder="http://www.whatsapp.com">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-lg border-2  btn-primary btn-block border-radius-15 padding-15px box-shadow">Add
+                    Listing</a>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

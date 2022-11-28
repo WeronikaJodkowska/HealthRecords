@@ -61,8 +61,10 @@
                     <ul id="menu-main" class="nav-menu float-lg-right link-padding-tb-20px">
                         <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Appointments</a>
                             <ul class="sub-menu">
+                                {% if request.user.is_authenticated %}
                                 <li><a href="{% url "visit_records:visit_list" %}">My Appointments</a></li>
-                                <li><a href="home-2.html">Home 2</a></li>
+                                <li><a href="{% url "visit_records:add_appointment" %}">Add an Appointment</a></li>
+                                {% endif %}
                                 <li><a href="home-3.html">Home 3</a></li>
                                 <li><a href="home-4.html">Home 4</a></li>
                             </ul>

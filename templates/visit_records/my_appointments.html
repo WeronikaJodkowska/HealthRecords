@@ -49,9 +49,9 @@
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
-                    <a class="nav-link active" href="dashboard-add-listing.html">
+                    <a class="nav-link active" href="{% url "visit_records:add_appointment" %}">
                         <i class="fa fa-fw fa-plus-circle"></i>
-                        <span class="nav-link-text">Add Listing</span>
+                        <span class="nav-link-text">Add an Appointment</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Packages">
@@ -81,12 +81,11 @@
         </div>
     </nav>
 
-
     <div id="page-title" class="padding-tb-30px gradient-white">
         <div class="container">
             <ol class="breadcrumb opacity-5">
                 <li><a href="{% url "users:index" %}">Home</a></li>
-                <li><a href="{% url "reference_information:index" %}">Reference information</a></li>
+                <li><a href="{% url "visit_records:visit_list" %}">Appointments</a></li>
                 <li class="active">Appointments</li>
             </ol>
             <h1 class="font-weight-300">Appointments</h1>
