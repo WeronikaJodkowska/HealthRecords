@@ -1,20 +1,20 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
-from django.contrib.auth.views import PasswordChangeView
-from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.translation import gettext_lazy as _
 
-from .forms import LoginForm, RegisterForm, ProfileEditForm, UpdateUserForm
+from .forms import LoginForm, ProfileEditForm, RegisterForm, UpdateUserForm
 from .services import create_user
 
 
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
-    template_name = 'users/change_password.html'
+    template_name = "users/change_password.html"
     success_message = "Successfully Changed Your Password"
     success_url = reverse_lazy("users:edit_profile")
 
@@ -56,7 +56,7 @@ def register(request):
                 username=form.cleaned_data["email"],
                 password=form.cleaned_data["password"],
             )
-            return redirect("/")
+            return redirect("users:login_user")
     else:
         form = RegisterForm()
     return render(request, "users/register.html", {"form": form})
@@ -73,6 +73,9 @@ def login_user(request):
             if user is None:
                 return HttpResponse("BadRequest", status=400)
             login(request, user)
+            # if request.user.last_login.time request.user.date_joined.time:
+            #     return redirect("users:edit_profile")
+            # else:
             return redirect("/")
     else:
         form = LoginForm()
@@ -86,20 +89,20 @@ def logout_view(request):
 
 @login_required
 def edit_profile(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         user_form = UpdateUserForm(request.POST, instance=request.user)
-        profile_form = ProfileEditForm(instance=request.user.profile,
-                                       data=request.POST)
+        profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, 'Profile updated successfully')
+            messages.success(request, "Profile updated successfully")
         else:
-            messages.error(request, 'Error updating your profile')
+            messages.error(request, "Error updating your profile")
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
-    return render(request,
-                  'users/profile.html',
-                  {'user_form': user_form,
-                   'profile_form': profile_form})
+    return render(
+        request,
+        "users/profile.html",
+        {"user_form": user_form, "profile_form": profile_form},
+    )

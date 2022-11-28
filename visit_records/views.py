@@ -7,7 +7,7 @@ from .models import Appointment
 class AppointmentListView(ListView):
     model = Appointment
     context_object_name = "appointment_list"
-    template_name = "visit_records/visit_list.html"
+    template_name = "visit_records/my_appointments.html"
     paginate_by = 10
 
     def get_queryset(self):

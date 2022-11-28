@@ -33,7 +33,8 @@
     <link rel="stylesheet" href="{% static 'css/colors/main.css' %}">
     <!-- elegant icon -->
     <link rel="stylesheet" href="{% static 'css/elegant_icon.css' %}">
-
+    <!-- admin style -->
+    <link rel="stylesheet" href="{% static '/css/sb-admin.css' %}">
     <!-- jquery library  -->
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <!-- fontawesome  -->
@@ -60,7 +61,7 @@
                     <ul id="menu-main" class="nav-menu float-lg-right link-padding-tb-20px">
                         <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Appointments</a>
                             <ul class="sub-menu">
-                                <li><a href="{% url "visit_records:visit_list" %}">All appointments</a></li>
+                                <li><a href="{% url "visit_records:visit_list" %}">My Appointments</a></li>
                                 <li><a href="home-2.html">Home 2</a></li>
                                 <li><a href="home-3.html">Home 3</a></li>
                                 <li><a href="home-4.html">Home 4</a></li>
@@ -119,12 +120,12 @@
                         </div>
                         <a href="{% url "users:logout" %}"
                            class="padding-lr-20px d-inline-block text-up-small ">
-                            <i class="far fa-user"></i> Logout</a>
+                            <i class="far fa-user"></i> Sing Out</a>
                     {% else %}
                         <hr class="margin-bottom-0px d-block d-sm-none">
                         <a href="{% url "users:login_user" %}"
                            class="margin-tb-20px d-inline-block text-up-small float-left float-lg-right">
-                            <i class="far fa-user"></i> Login</a>
+                            <i class="far fa-user"></i> Sign In</a>
                     {% endif %}
                 </div>
             </div>

@@ -1,13 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from reference_information.models import (
-    Diagnosis,
-    Doctor,
-    HealthTest,
-    MedCategory,
-    MedInstitution,
-)
+from reference_information.models import (Diagnosis, Doctor, HealthTest,
+                                          MedCategory, MedInstitution)
 
 
 class Appointment(models.Model):
@@ -24,7 +19,8 @@ class Appointment(models.Model):
     med_category = models.ForeignKey(
         MedCategory, default=None, on_delete=models.CASCADE
     )
-    appointment_date = models.DateTimeField()
+    appointment_date = models.DateField()
+    appointment_time = models.TimeField(blank=True, null=True)
     reminder = models.BooleanField(default=False, help_text="Create a reminder?")
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     previous_appointment = models.ForeignKey(
@@ -47,7 +43,9 @@ class Appointment(models.Model):
     recommendations = models.TextField(
         blank=True, null=True, help_text="Treatment recommendations"
     )
-    file = models.FileField(upload_to="staticfiles/appointment_files")
+    file = models.FileField(
+        upload_to="staticfiles/appointment_files", blank=True, null=True
+    )
 
     def __str__(self):
         return (

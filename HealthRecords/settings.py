@@ -25,7 +25,8 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+# SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = "django-insecure-_!kic0)56^8_1m^358zvz_u46+n#q96h#h52f(73xdb99lpv_!"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,9 +91,9 @@ WSGI_APPLICATION = "HealthRecords.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("DATABASE_NAME"),
-        "USER": env("DATABASE_USER"),
-        "PASSWORD": env("DATABASE_PASSWORD"),
+        "NAME": "health",
+        "USER": "health",
+        "PASSWORD": "health",
         "HOST": "localhost",
         "PORT": 5432,
     }

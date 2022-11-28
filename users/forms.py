@@ -1,7 +1,7 @@
 from django import forms
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import User
 
 from .models import Profile
 
@@ -46,21 +46,16 @@ class LoginForm(forms.Form):
 
 
 class UpdateUserForm(forms.ModelForm):
-    username = forms.CharField(max_length=100,
-                               required=True,
-                               widget=forms.TextInput())
-    email = forms.EmailField(required=True,
-                             widget=forms.TextInput())
-    first_name = forms.CharField(max_length=100,
-                                 required=True,
-                                 widget=forms.TextInput())
-    last_name = forms.CharField(max_length=100,
-                                required=True,
-                                widget=forms.TextInput())
+    username = forms.CharField(max_length=100, required=True, widget=forms.TextInput())
+    email = forms.EmailField(required=True, widget=forms.TextInput())
+    first_name = forms.CharField(
+        max_length=100, required=True, widget=forms.TextInput()
+    )
+    last_name = forms.CharField(max_length=100, required=True, widget=forms.TextInput())
 
     class Meta:
         model = User
-        fields = ['username', 'email', "first_name", "last_name"]
+        fields = ["username", "email", "first_name", "last_name"]
 
 
 class ProfileEditForm(forms.ModelForm):
@@ -82,21 +77,18 @@ class ProfileEditForm(forms.ModelForm):
         ("2", "other"),
     )
 
-    date_of_birth = forms.DateField(required=True,
-                                    widget=forms.SelectDateWidget(years=range(1900, 2100)))
-    blood_type = forms.ChoiceField(choices=BLOOD_TYPE_CHOICES,
-                                   required=True,
-                                   widget=forms.Select())
-    gender = forms.ChoiceField(choices=GENDER_CHOICES,
-                               required=True,
-                               widget=forms.Select())
-    height = forms.CharField(max_length=10,
-                             required=True,
-                             widget=forms.TextInput())
-    weight = forms.CharField(max_length=10,
-                             required=True,
-                             widget=forms.TextInput())
+    date_of_birth = forms.DateField(
+        required=True, widget=forms.SelectDateWidget(years=range(1900, 2100))
+    )
+    blood_type = forms.ChoiceField(
+        choices=BLOOD_TYPE_CHOICES, required=True, widget=forms.Select()
+    )
+    gender = forms.ChoiceField(
+        choices=GENDER_CHOICES, required=True, widget=forms.Select()
+    )
+    height = forms.CharField(max_length=10, required=True, widget=forms.TextInput())
+    weight = forms.CharField(max_length=10, required=True, widget=forms.TextInput())
 
     class Meta:
         model = Profile
-        fields = ('date_of_birth', "blood_type", "gender", "height", "weight")
+        fields = ("date_of_birth", "blood_type", "gender", "height", "weight")

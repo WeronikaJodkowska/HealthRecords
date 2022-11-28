@@ -17,7 +17,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from users.views import index, login_user, logout_view, register, edit_profile, ChangePasswordView
+from users.views import (ChangePasswordView, edit_profile, index, login_user,
+                         logout_view, register)
 
 app_name = "users"
 
@@ -27,5 +28,5 @@ urlpatterns = [
     path("login/", login_user, name="login_user"),
     path("logout/", logout_view, name="logout"),
     path("profile/", edit_profile, name="edit_profile"),
-    path('change_password/', ChangePasswordView.as_view(), name='password_change'),
+    path("change_password/", ChangePasswordView.as_view(), name="password_change"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
