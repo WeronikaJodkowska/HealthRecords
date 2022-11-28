@@ -17,8 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from users.views import (ChangePasswordView, edit_profile, index, login_user,
-                         logout_view, register)
+from users.views import (
+    ChangePasswordView,
+    edit_profile,
+    index,
+    login_user,
+    logout_view,
+    register,
+)
 
 app_name = "users"
 

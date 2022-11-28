@@ -2,13 +2,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from reference_information.views import (DiagnosisListView,
-                                         DiagnosisSearchView, DoctorsListView,
-                                         DoctorsSearchView, LaboratoryListView,
-                                         LaboratorySearchView,
-                                         MedInstitutionDetailView,
-                                         MedInstitutionListView,
-                                         MedInstitutionSearchView, index)
+from reference_information.views import (
+    DiagnosisListView,
+    DiagnosisSearchView,
+    DoctorsListView,
+    DoctorsSearchView,
+    LaboratoryListView,
+    LaboratorySearchView,
+    MedInstitutionDetailView,
+    MedInstitutionListView,
+    MedInstitutionSearchView,
+    index,
+)
 
 app_name = "reference_information"
 
