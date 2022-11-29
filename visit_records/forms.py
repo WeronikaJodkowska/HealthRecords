@@ -41,8 +41,14 @@ class CreateAppointmentForm(forms.ModelForm):
     )
     examination_protocol = forms.TextInput()
     conclusion = forms.TextInput()
-    # diagnosis = forms.ModelMultipleChoiceField(queryset=Diagnosis.objects.all(),
-    #                                            widget=Select2Multiple(select2attrs={"class": "form-control form-control-sm"}))
+
+    recommendations = forms.TextInput()
+    file = forms.FileField(
+        widget=forms.FileInput(attrs={"class": "form-control form-control-sm"})
+    )
+
+    # diagnosis = forms.ModelMultipleChoiceField(queryset=Diagnosis.objects.all(), widget=Select2Multiple(
+    # select2attrs={"class": "form-control form-control-sm"}))
 
     class Meta:
         model = Appointment
@@ -75,7 +81,8 @@ class CreateAppointmentForm(forms.ModelForm):
                 Field("conclusion"),
                 HTML("<br>"),
                 Fieldset("Diagnoses", Formset("diagnoses")),
-                HTML("<br>"),
+                Field("recommendations"),
+                Field("file"),
                 HTML("<br>"),
                 ButtonHolder(Submit("submit", "save")),
             )
