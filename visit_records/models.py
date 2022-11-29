@@ -1,13 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from reference_information.models import (
-    Diagnosis,
-    Doctor,
-    HealthTest,
-    MedCategory,
-    MedInstitution,
-)
+from reference_information.models import (Diagnosis, Doctor, HealthTest,
+                                          MedCategory, MedInstitution)
 
 
 class Appointment(models.Model):
@@ -40,7 +35,10 @@ class Appointment(models.Model):
         blank=True, null=True, help_text="Diagnoses and health problems"
     )
     diagnosis = models.ManyToManyField(
-        Diagnosis, blank=False, related_name="appointment_diagnoses"
+        Diagnosis,
+        blank=False,
+        related_name="appointment_diagnoses",
+        through="AppointmentDiagnosis",
     )
     examination_plan = models.ManyToManyField(
         HealthTest, blank=True, related_name="appointment_tests"
@@ -60,3 +58,8 @@ class Appointment(models.Model):
             + ", "
             + str(self.appointment_date)
         )
+
+
+class AppointmentDiagnosis(models.Model):
+    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE)

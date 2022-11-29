@@ -1,17 +1,9 @@
 from django.contrib import admin
 from easy_select2 import select2_modelform
 
-from .models import (
-    Allergy,
-    Diagnosis,
-    Doctor,
-    DoctorSpecialization,
-    HealthTest,
-    Laboratory,
-    MedCategory,
-    MedInstitution,
-    Symptom,
-)
+from .models import (Allergy, Diagnosis, Doctor, DoctorSpecialization,
+                     HealthTest, Laboratory, MedCategory, MedInstitution,
+                     Symptom)
 
 DoctorForm = select2_modelform(Doctor, attrs={"width": "250px"})
 
