@@ -3,8 +3,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.views.generic import CreateView, DetailView, ListView
 
-from reference_information.models import Diagnosis
 from visit_records.forms import (AppointmentDiagnosisFormSet,
+                                 AppointmentHealthTestFormSet,
                                  CreateAppointmentForm)
 from visit_records.models import Appointment
 
@@ -37,8 +37,10 @@ class CreateAppointmentView(LoginRequiredMixin, CreateView):
         context = super(CreateAppointmentView, self).get_context_data(**kwargs)
         if self.request.POST:
             context["diagnoses"] = AppointmentDiagnosisFormSet(self.request.POST)
+            context["health_tests"] = AppointmentHealthTestFormSet(self.request.POST)
         else:
             context["diagnoses"] = AppointmentDiagnosisFormSet()
+            context["health_tests"] = AppointmentHealthTestFormSet()
         return context
 
     def form_valid(self, form):

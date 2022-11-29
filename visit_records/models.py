@@ -41,7 +41,10 @@ class Appointment(models.Model):
         through="AppointmentDiagnosis",
     )
     examination_plan = models.ManyToManyField(
-        HealthTest, blank=True, related_name="appointment_tests"
+        HealthTest,
+        blank=True,
+        related_name="appointment_tests",
+        through="AppointmentHealthTest",
     )
     recommendations = models.TextField(
         blank=True, null=True, help_text="Treatment recommendations"
@@ -63,3 +66,8 @@ class Appointment(models.Model):
 class AppointmentDiagnosis(models.Model):
     appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE)
+
+
+class AppointmentHealthTest(models.Model):
+    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    health_test = models.ForeignKey(HealthTest, on_delete=models.CASCADE)

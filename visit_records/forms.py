@@ -8,7 +8,8 @@ from easy_select2 import Select2, Select2Multiple
 from reference_information.models import (Diagnosis, Doctor, MedCategory,
                                           MedInstitution)
 from visit_records.custom_layout_object import Formset
-from visit_records.models import Appointment, AppointmentDiagnosis
+from visit_records.models import (Appointment, AppointmentDiagnosis,
+                                  AppointmentHealthTest)
 
 
 class CreateAppointmentForm(forms.ModelForm):
@@ -81,6 +82,7 @@ class CreateAppointmentForm(forms.ModelForm):
                 Field("conclusion"),
                 HTML("<br>"),
                 Fieldset("Diagnoses", Formset("diagnoses")),
+                Fieldset("Examination plan", Formset("health_tests")),
                 Field("recommendations"),
                 Field("file"),
                 HTML("<br>"),
@@ -95,6 +97,12 @@ class AppointmentDiagnosisForm(forms.ModelForm):
         exclude = ()
 
 
+class AppointmentHealthTestForm(forms.ModelForm):
+    class Meta:
+        model = AppointmentHealthTest
+        exclude = ()
+
+
 AppointmentDiagnosisFormSet = inlineformset_factory(
     Appointment,
     AppointmentDiagnosis,
@@ -104,5 +112,18 @@ AppointmentDiagnosisFormSet = inlineformset_factory(
     can_delete=True,
     widgets={
         "diagnosis": forms.Select(attrs={"class": "form-control form-control-sm"}),
+    },
+)
+
+
+AppointmentHealthTestFormSet = inlineformset_factory(
+    Appointment,
+    AppointmentHealthTest,
+    form=AppointmentHealthTestForm,
+    fields="__all__",
+    extra=3,
+    can_delete=True,
+    widgets={
+        "health_test": forms.Select(attrs={"class": "form-control form-control-sm"}),
     },
 )
