@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Clinic{% endblock %}
+
+{% block content %}
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark z-index-9  fixed-top" id="mainNav">
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+            <ul class="navbar-nav navbar-sidenav background-main-color admin-nav" id="admin-nav">
+                <li class="nav-item">
+                    <span class="nav-title-text">Main</span>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                    <a class="nav-link" href="dashboard-home.html">
+                        <i class="fas fa-fw fa-home"></i><span class="nav-link-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
+                    <a class="nav-link" href="{% url "visit_records:visit_list" %}">
+                        <i class="fa fa-fw fa-table"></i>
+                        <span class="nav-link-text">My Appointments</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <span class="nav-title-text">Add Pages</span>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
+                    <a class="nav-link active" href="{% url "visit_records:add_appointment" %}">
+                        <i class="fa fa-fw fa-plus-circle"></i>
+                        <span class="nav-link-text">Add an Appointment</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <span class="nav-title-text">User Area</span>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Profile">
+                    <a class="nav-link" href="{% url "users:edit_profile" %}">
+                        <i class="fa fa-fw fa-user-circle"></i>
+                        <span class="nav-link-text">My Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sing Out">
+                    <a class="nav-link" href="{% url "users:logout" %}" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out-alt"></i>
+                        <span class="nav-link-text">Sing Out</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <div class="content-wrapper">
+        <div class="container-fluid overflow-hidden">
+            <div id="page-title" class="padding-tb-30px gradient-white">
+                <div class="container">
+                    <ol class="breadcrumb opacity-5">
+                        <li><a href="{% url "users:index" %}">Home</a></li>
+                        <li><a href="{% url "visit_records:visit_list" %}">My Appointments</a></li>
+                        <li class="active">Appointment</li>
+                    </ol>
+                    <h1 class="font-weight-300">{{ appointment.med_category }} / {{ appointment.appointment_date }}
+                        / {{ appointment.doctor }}</h1>
+                </div>
+            </div>
+
+
+            <div class="margin-tb-10px">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="margin-bottom-30px box-shadow">
+                                <div class="padding-30px background-white">
+                                    <h3>
+                                        <i class="far fa-hospital margin-right-10px text-main-color"></i>{{ appointment.med_category }}
+                                    </h3>
+                                    <span class="margin-right-20px text-small">Date:  <a
+                                            href="#">{{ appointment.appointment_date }}</a></span>
+                                    {% if appointment.appointment_time is not Null %}
+                                        <span class="margin-right-20px text-small">Time:  <a
+                                                href="#">{{ appointment.appointment_time }}</a></span>
+                                    {% endif %}
+                                    <br>
+                                    {% if appointment.previous_appointment is not Null %}
+                                        <span class="margin-right-20px text-small">Previous appointment:  <a
+                                                href="{% url "visit_records:appointment" appointment.previous_appointment.id %}">{{ appointment.previous_appointment.appointment_date }}</a></span>
+                                    {% endif %}
+                                    <div class="entry-content">
+                                        <br>
+                                        <span class="margin-right-20px text-large">Clinic: <a
+                                                href="{% url "reference_information:clinic_detail" appointment.clinic.id %}">{{ appointment.clinic }}</a></span>
+                                        <br>
+                                        <span class="margin-right-20px text-large">Doctor: {{ appointment.doctor }}</span>
+                                        <br><br>
+                                        <h5>Examination protocol: </h5>
+                                        <p>{{ appointment.examination_protocol }}</p>
+                                        <h5>Conclusion: </h5>
+                                        <p>{{ appointment.conclusion }}</p>
+                                        {% if diagnoses %}
+                                            <h5>Diagnoses: </h5>
+                                            {% for d in diagnoses %}
+                                                {{ d.diagnosis }}<br>
+                                            {% endfor %}
+                                        {% endif %}
+                                        <br>
+                                        {% if health_tests %}
+                                            <h5>Examination plan: </h5>
+                                            {% for h in health_tests %}
+                                                {{ h.health_test }}<br>
+                                            {% endfor %}
+                                        {% endif %}
+                                        <br>
+                                        <h5>Recommendations: </h5>
+                                        <p>{{ appointment.recommendations }}</p>
+                                        {% if appointment.file %}
+                                            <a href="{{ appointment.file.url }}" target="_blank">
+                                                <button class="btn btn-outline-warning mr-3">Download file</button>&nbsp;
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

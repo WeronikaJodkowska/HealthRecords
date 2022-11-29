@@ -27,37 +27,14 @@
                         <span class="nav-link-text">My Appointments</span>
                     </a>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Favorites">
-                    <a class="nav-link" href="dashboard-my-favorites.html">
-                        <i class="fa fa-fw fa-heart"></i>
-                        <span class="nav-link-text">My Favorites</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
-                    <a class="nav-link" href="dashboard-reviews.html">
-                        <i class="fa fa-fw fa-star"></i>
-                        <span class="nav-link-text">Reviews</span>
-                    </a>
-                </li>
+
                 <li class="nav-item">
-                    <span class="nav-title-text">Example Pages</span>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
-                    <a class="nav-link" href="dashboard-bookings.html">
-                        <i class="far fa-fw fa-bookmark"></i>
-                        <span class="nav-link-text">Bookings</span>
-                    </a>
+                    <span class="nav-title-text">Add Pages</span>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
                     <a class="nav-link active" href="{% url "visit_records:add_appointment" %}">
                         <i class="fa fa-fw fa-plus-circle"></i>
                         <span class="nav-link-text">Add an Appointment</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Packages">
-                    <a class="nav-link" href="dashboard-packages.html">
-                        <i class="far fa-fw fa-list-alt"></i>
-                        <span class="nav-link-text">Packages</span>
                     </a>
                 </li>
 
@@ -81,6 +58,7 @@
         </div>
     </nav>
 
+
     <div class="content-wrapper">
         <div class="container-fluid overflow-hidden">
             <div id="page-title" class="padding-tb-30px gradient-white">
@@ -100,4 +78,9 @@
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block footer %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{ form.media.js }}
 {% endblock %}

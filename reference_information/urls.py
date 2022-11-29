@@ -22,7 +22,7 @@ urlpatterns = [
     path("labs_search/", LaboratorySearchView.as_view(), name="laboratory_search"),
     path("clinics/", MedInstitutionListView.as_view(), name="med_inst_list"),
     path(
-        "clinic_detail/<int:pk>",
+        "clinic/<int:pk>",
         MedInstitutionDetailView.as_view(),
         name="clinic_detail",
     ),

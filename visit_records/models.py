@@ -50,7 +50,7 @@ class Appointment(models.Model):
         blank=True, null=True, help_text="Treatment recommendations"
     )
     file = models.FileField(
-        upload_to="staticfiles/appointment_files", blank=True, null=True
+        upload_to="appointment_files/%Y/%m/%d", blank=True, null=True
     )
 
     def __str__(self):

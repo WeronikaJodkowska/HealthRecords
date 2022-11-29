@@ -2,14 +2,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from .views import AppointmentListView, CreateAppointmentView, index
+from .views import (AppointmentDetailView, AppointmentListView,
+                    CreateAppointmentView)
 
 app_name = "visit_records"
 
 urlpatterns = [
     # path("", index, name="index"),
     path("", AppointmentListView.as_view(), name="visit_list"),
-    # path("add_appointment/", index, name="add_appointment"),
+    path("appointment/<int:pk>", AppointmentDetailView.as_view(), name="appointment"),
     path("add_appointment/", CreateAppointmentView.as_view(), name="add_appointment"),
     #     path("diagnosis_search/", DiagnosisSearchView.as_view(), name="diagnosis_search"),
     #     path("doctors/", DoctorsListView.as_view(), name="doctors_list"),

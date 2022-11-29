@@ -6,7 +6,6 @@
 
 {% block content %}
 
-
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark z-index-9  fixed-top" id="mainNav">
 
@@ -27,37 +26,14 @@
                         <span class="nav-link-text">My Appointments</span>
                     </a>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Favorites">
-                    <a class="nav-link" href="dashboard-my-favorites.html">
-                        <i class="fa fa-fw fa-heart"></i>
-                        <span class="nav-link-text">My Favorites</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
-                    <a class="nav-link" href="dashboard-reviews.html">
-                        <i class="fa fa-fw fa-star"></i>
-                        <span class="nav-link-text">Reviews</span>
-                    </a>
-                </li>
+
                 <li class="nav-item">
-                    <span class="nav-title-text">Example Pages</span>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
-                    <a class="nav-link" href="dashboard-bookings.html">
-                        <i class="far fa-fw fa-bookmark"></i>
-                        <span class="nav-link-text">Bookings</span>
-                    </a>
+                    <span class="nav-title-text">Add Pages</span>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
                     <a class="nav-link active" href="{% url "visit_records:add_appointment" %}">
                         <i class="fa fa-fw fa-plus-circle"></i>
                         <span class="nav-link-text">Add an Appointment</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Packages">
-                    <a class="nav-link" href="dashboard-packages.html">
-                        <i class="far fa-fw fa-list-alt"></i>
-                        <span class="nav-link-text">Packages</span>
                     </a>
                 </li>
 
@@ -81,164 +57,82 @@
         </div>
     </nav>
 
-    <div id="page-title" class="padding-tb-30px gradient-white">
-        <div class="container">
-            <ol class="breadcrumb opacity-5">
-                <li><a href="{% url "users:index" %}">Home</a></li>
-                <li><a href="{% url "visit_records:visit_list" %}">Appointments</a></li>
-                <li class="active">Appointments</li>
-            </ol>
-            <h1 class="font-weight-300">Appointments</h1>
-        </div>
-    </div>
-
-    <div class="row justify-content-center margin-tb-60px">
-        <div class="col-lg-6">
-            <div class="listing-search">
-                <form class="row no-gutters">
-                    <div class="col-md-4">
-                        <div class="keywords">
-                            <input class="listing-form first" type="text" placeholder="Keywords..." value="">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="categories dropdown">
-                            <a class="listing-form d-block text-nowrap" id="dropdownMenu2" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">All Categories</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <button class="dropdown-item text-up-small" type="button">Doctors</button>
-                                <button class="dropdown-item text-up-small" type="button">Clinics</button>
-                                <button class="dropdown-item text-up-small" type="button">Pharmacies</button>
-                                <button class="dropdown-item text-up-small" type="button">Labs</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <a class="listing-bottom background-second-color box-shadow" href="#">Search Now</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="margin-tb-30px">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-
-                    <div class="row">
-                        {% for obj in appointment_list %}
-                            <!-- Doctor -->
-                            <div class="col-lg-4 col-md-6 hvr-bob sm-mb-45px">
-                                <div class="background-white box-shadow margin-bottom-45px">
-                                    <div class="padding-lr-10px padding-bottom-10px padding-right-10px">
-                                        <div class="pull-top-40px z-index-2 position-relative">
-                                            <label class="small mb-1 text-blue">Category:</label>
-                                            <span class="margin-tb-15px text-medium">{{ obj.med_category }}</span>
-                                            <br>
-                                            <label class="small mb-1 text-blue">Date:</label>
-                                            <span class="margin-tb-15px text-medium">{{ obj.appointment_date }}</span>
-                                            <br>
-                                            <label class="small mb-1 text-blue">Doctor:</label>
-                                            <span class="margin-tb-15px text-medium">{{ obj.doctor }}</span>
-                                            <br>
-                                            <label class="small mb-1 text-blue">Clinic:</label>
-                                            <span class="margin-tb-15px text-medium">{{ obj.clinic }}</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- // Doctor -->
-                        {% endfor %}
-                    </div>
-                    {% if is_paginated %}
-                        <ul class="pagination pagination-md ">
-                            <li class="page-item">
-                                {% if page_obj.has_previous %}
-                                    <a class="page-link rounded-0" href="?page=1">&laquo; first</a>
-                                    <a class="page-link rounded-0"
-                                       href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
-                                {% endif %}
-                            </li>
-
-                            <li class="page-current">
-                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                            </li>
-
-                            {% if page_obj.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link rounded-0"
-                                       href="?page={{ page_obj.next_page_number }}">Next</a>
-                                    <a class="page-link rounded-0"
-                                       href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    {% endif %}
+    <div class="content-wrapper">
+        <div class="container-fluid overflow-hidden">
+            <div id="page-title" class="padding-tb-30px gradient-white">
+                <div class="container">
+                    <ol class="breadcrumb opacity-5">
+                        <li><a href="{% url "users:index" %}">Home</a></li>
+                        <li><a href="{% url "visit_records:visit_list" %}">Appointments</a></li>
+                        <li class="active">Appointments</li>
+                    </ol>
+                    <h1 class="font-weight-300">Appointments</h1>
                 </div>
+            </div>
 
+            <div class="margin-tb-30px">
 
-                <div class="col-lg-4">
+                <div class="container">
 
-
-                    <div class="featured-category">
+                    <div class="col-lg-8">
                         <div class="row">
 
-                            <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
-                                <a href="{% url "reference_information:diagnosis_list" %}"
-                                   class="d-block border-radius-15 hvr-float hvr-sh2">
-                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
-                                        <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="{% static "/img/icon/categorie-4.png" %}" alt="">
-                                        </div>
-                                        Diagnoses
-                                    </div>
-                                </a>
-                            </div>
+                            {% for obj in appointment_list %}
+                                <!-- Doctor -->
+                                <div class="col-lg-4 col-md-6 hvr-bob sm-mb-45px">
+                                    <div class="background-white box-shadow margin-bottom-45px">
+                                        <div class="padding-lr-10px padding-bottom-10px padding-right-10px">
+                                            <div class="pull-top-40px z-index-2 position-relative">
+                                                <label class="small mb-1 text-blue">Category:</label>
+                                                <span class="margin-tb-15px text-medium"><a
+                                                        href="{% url "visit_records:appointment" obj.id %}">{{ obj.med_category }}</a></span>
+                                                <br>
+                                                <label class="small mb-1 text-blue">Date:</label>
+                                                <span class="margin-tb-15px text-medium"><a
+                                                        href="{% url "visit_records:appointment" obj.id %}">{{ obj.appointment_date }}</a></span>
+                                                <br>
+                                                <label class="small mb-1 text-blue">Doctor:</label>
+                                                <span class="margin-tb-15px text-medium"><a
+                                                        href="{% url "visit_records:appointment" obj.id %}">{{ obj.doctor }}</a></span>
+                                                <br>
+                                                <label class="small mb-1 text-blue">Clinic:</label>
+                                                <span class="margin-tb-15px text-medium"><a
+                                                        href="{% url "visit_records:appointment" obj.id %}">{{ obj.clinic }}</a></span>
+                                            </div>
 
-                            <div class="col-6 margin-bottom-30px wow fadeInUp">
-                                <a href="{% url "reference_information:doctors_list" %}"
-                                   class="d-block border-radius-15 hvr-float hvr-sh2">
-                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
-                                        <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="{% static "/img/icon/categorie-1.png" %}" alt="">
                                         </div>
-                                        Doctors
                                     </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 margin-bottom-30px wow fadeInUp" data-wow-delay="0.2s">
-                                <a href="{% url "reference_information:med_inst_list" %}"
-                                   class="d-block border-radius-15 hvr-float hvr-sh2">
-                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
-                                        <div class="icon margin-bottom-15px opacity-7">
-                                            <img src="{% static "/img/icon/categorie-2.png" %}" alt="">
-                                        </div>
-                                        Clinics
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 wow fadeInUp" data-wow-delay="0.4s">
-                                <a href="{% url "reference_information:laboratory_list" %}"
-                                   class="d-block border-radius-15 hvr-float hvr-sh2">
-                                    <div class="background-main-color text-white border-radius-15 padding-30px text-center opacity-hover-7">
-                                        <div class="icon margin-bottom-15px">
-                                            <img src="{% static "/img/icon/categorie-3.png" %}" alt="">
-                                        </div>
-                                        Labs
-                                    </div>
-                                </a>
-                            </div>
-
+                                </div>
+                                <!-- // Doctor -->
+                            {% endfor %}
                         </div>
+                        {% if is_paginated %}
+                            <ul class="pagination pagination-md ">
+                                <li class="page-item">
+                                    {% if page_obj.has_previous %}
+                                        <a class="page-link rounded-0" href="?page=1">&laquo; first</a>
+                                        <a class="page-link rounded-0"
+                                           href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+                                    {% endif %}
+                                </li>
+
+                                <li class="page-current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                </li>
+
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link rounded-0"
+                                           href="?page={{ page_obj.next_page_number }}">Next</a>
+                                        <a class="page-link rounded-0"
+                                           href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}

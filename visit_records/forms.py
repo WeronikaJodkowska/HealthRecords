@@ -20,36 +20,47 @@ class CreateAppointmentForm(forms.ModelForm):
 
     med_category = forms.ModelChoiceField(
         queryset=MedCategory.objects.all(),
-        widget=Select2(attrs={"class": "form-control form-control-sm"}),
+        # widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
+
     appointment_date = forms.DateField(
         widget=forms.SelectDateWidget(years=range(2000, 2050))
     )
-    appointment_time = forms.TimeField(widget=forms.TimeInput(attrs={"type": "time"}))
+
+    appointment_time = forms.TimeField(
+        required=False, widget=forms.TimeInput(attrs={"type": "time"})
+    )
+
     reminder = forms.CheckboxInput()
+
     status = forms.ChoiceField(choices=STATUS_CHOICES, widget=forms.RadioSelect)
+
     previous_appointment = forms.ModelChoiceField(
         queryset=Appointment.objects.all(),
-        widget=Select2(attrs={"class": "form-control form-control-sm"}),
+        required=False,
+        # widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
+
     clinic = forms.ModelChoiceField(
         queryset=MedInstitution.objects.all(),
-        widget=Select2(attrs={"class": "form-control form-control-sm"}),
+        # widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
+
     doctor = forms.ModelChoiceField(
         queryset=Doctor.objects.all(),
-        widget=Select2(attrs={"class": "form-control form-control-sm"}),
+        # widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
+
     examination_protocol = forms.TextInput()
+
     conclusion = forms.TextInput()
 
     recommendations = forms.TextInput()
-    file = forms.FileField(
-        widget=forms.FileInput(attrs={"class": "form-control form-control-sm"})
-    )
 
-    # diagnosis = forms.ModelMultipleChoiceField(queryset=Diagnosis.objects.all(), widget=Select2Multiple(
-    # select2attrs={"class": "form-control form-control-sm"}))
+    file = forms.FileField(
+        required=False,
+        widget=forms.FileInput(attrs={"class": "form-control form-control-sm"}),
+    )
 
     class Meta:
         model = Appointment
@@ -59,8 +70,9 @@ class CreateAppointmentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreateAppointmentForm, self).__init__(*args, **kwargs)
         self.fields["med_category"].label = "Category"
-
         self.helper = FormHelper()
+        # self.helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+        # self.helper.form_method = 'POST'
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"
         self.helper.label_class = "col-md-3 create-label"
