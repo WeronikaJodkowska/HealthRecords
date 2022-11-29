@@ -110,10 +110,10 @@
                                             {% endfor %}
                                         {% endif %}
                                         <br>
-                                        {% if health_tests %}
+                                        {% if analyzes %}
                                             <h5>Examination plan: </h5>
-                                            {% for h in health_tests %}
-                                                {{ h.health_test }}<br>
+                                            {% for h in analyzes %}
+                                                {{ h.analysis }}<br>
                                             {% endfor %}
                                         {% endif %}
                                         <br>

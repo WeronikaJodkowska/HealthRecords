@@ -2,14 +2,15 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import (HTML, ButtonHolder, Div, Field, Fieldset,
                                  Layout, Submit)
 from django import forms
+from django.core.exceptions import ValidationError
 from django.forms.models import inlineformset_factory
 from easy_select2 import Select2, Select2Multiple
 
 from reference_information.models import (Diagnosis, Doctor, MedCategory,
                                           MedInstitution)
 from visit_records.custom_layout_object import Formset
-from visit_records.models import (Appointment, AppointmentDiagnosis,
-                                  AppointmentHealthTest)
+from visit_records.models import (Appointment, AppointmentAnalysis,
+                                  AppointmentDiagnosis)
 
 
 class CreateAppointmentForm(forms.ModelForm):
@@ -20,7 +21,7 @@ class CreateAppointmentForm(forms.ModelForm):
 
     med_category = forms.ModelChoiceField(
         queryset=MedCategory.objects.all(),
-        # widget=Select2(attrs={"class": "form-control form-control-sm"}),
+        widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
 
     appointment_date = forms.DateField(
@@ -38,17 +39,17 @@ class CreateAppointmentForm(forms.ModelForm):
     previous_appointment = forms.ModelChoiceField(
         queryset=Appointment.objects.all(),
         required=False,
-        # widget=Select2(attrs={"class": "form-control form-control-sm"}),
+        widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
 
     clinic = forms.ModelChoiceField(
         queryset=MedInstitution.objects.all(),
-        # widget=Select2(attrs={"class": "form-control form-control-sm"}),
+        widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
 
     doctor = forms.ModelChoiceField(
         queryset=Doctor.objects.all(),
-        # widget=Select2(attrs={"class": "form-control form-control-sm"}),
+        widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
 
     examination_protocol = forms.TextInput()
@@ -65,14 +66,12 @@ class CreateAppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         fields = "__all__"
-        exclude = ["user"]
+        exclude = ["user", "analysis", "diagnosis"]
 
     def __init__(self, *args, **kwargs):
         super(CreateAppointmentForm, self).__init__(*args, **kwargs)
         self.fields["med_category"].label = "Category"
         self.helper = FormHelper()
-        # self.helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
-        # self.helper.form_method = 'POST'
         self.helper.form_tag = True
         self.helper.form_class = "form-horizontal"
         self.helper.label_class = "col-md-3 create-label"
@@ -94,11 +93,11 @@ class CreateAppointmentForm(forms.ModelForm):
                 Field("conclusion"),
                 HTML("<br>"),
                 Fieldset("Diagnoses", Formset("diagnoses")),
-                Fieldset("Examination plan", Formset("health_tests")),
+                Fieldset("Analyzes", Formset("analyzes")),
                 Field("recommendations"),
                 Field("file"),
                 HTML("<br>"),
-                ButtonHolder(Submit("submit", "save")),
+                ButtonHolder(Submit("submit", "submit")),
             )
         )
 
@@ -109,9 +108,9 @@ class AppointmentDiagnosisForm(forms.ModelForm):
         exclude = ()
 
 
-class AppointmentHealthTestForm(forms.ModelForm):
+class AppointmentAnalysisForm(forms.ModelForm):
     class Meta:
-        model = AppointmentHealthTest
+        model = AppointmentAnalysis
         exclude = ()
 
 
@@ -128,14 +127,14 @@ AppointmentDiagnosisFormSet = inlineformset_factory(
 )
 
 
-AppointmentHealthTestFormSet = inlineformset_factory(
+AppointmentAnalysisFormSet = inlineformset_factory(
     Appointment,
-    AppointmentHealthTest,
-    form=AppointmentHealthTestForm,
+    AppointmentAnalysis,
+    form=AppointmentAnalysisForm,
     fields="__all__",
     extra=3,
     can_delete=True,
     widgets={
-        "health_test": forms.Select(attrs={"class": "form-control form-control-sm"}),
+        "analysis": forms.Select(attrs={"class": "form-control form-control-sm"}),
     },
 )

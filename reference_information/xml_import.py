@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ElT
 
-from reference_information.models import Diagnosis, HealthTest, Symptom
+from reference_information.models import Analysis, Diagnosis, Symptom
 
 
 def save_xml():
@@ -37,5 +37,5 @@ def save_xml_tests():
         test_code = test.find("test_code").text
         title = test.find("title").text
 
-        x = HealthTest.objects.create(test_code=test_code, title=title)
+        x = Analysis.objects.create(test_code=test_code, title=title)
         x.save()

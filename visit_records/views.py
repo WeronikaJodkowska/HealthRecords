@@ -1,17 +1,14 @@
-from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.utils.safestring import mark_safe
 from django.views.generic import CreateView, DetailView, ListView
 
-from visit_records.forms import (AppointmentDiagnosisFormSet,
-                                 AppointmentHealthTestFormSet,
+from visit_records.forms import (AppointmentAnalysisFormSet,
+                                 AppointmentDiagnosisFormSet,
                                  CreateAppointmentForm)
-from visit_records.models import (Appointment, AppointmentDiagnosis,
-                                  AppointmentHealthTest)
+from visit_records.models import (Appointment, AppointmentAnalysis,
+                                  AppointmentDiagnosis)
 
 
 class AppointmentListView(ListView):
@@ -37,15 +34,14 @@ class AppointmentDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context["diagnoses"] = AppointmentDiagnosis.objects.filter(
             appointment_id=self.kwargs.get("pk")
-        )
-        context["health_tests"] = AppointmentHealthTest.objects.filter(
+        ).distinct("diagnosis__title")
+        context["analyzes"] = AppointmentAnalysis.objects.filter(
             appointment_id=self.kwargs.get("pk")
-        )
+        ).distinct("analysis__title")
         return context
 
 
 class CreateAppointmentView(LoginRequiredMixin, CreateView):
-    model = Appointment
     form_class = CreateAppointmentForm
     template_name = "visit_records/add_appointment.html"
 
@@ -53,25 +49,28 @@ class CreateAppointmentView(LoginRequiredMixin, CreateView):
         context = super(CreateAppointmentView, self).get_context_data(**kwargs)
         if self.request.POST:
             context["diagnoses"] = AppointmentDiagnosisFormSet(self.request.POST)
-            context["health_tests"] = AppointmentHealthTestFormSet(self.request.POST)
+            context["analyzes"] = AppointmentAnalysisFormSet(self.request.POST)
         else:
             context["diagnoses"] = AppointmentDiagnosisFormSet()
-            context["health_tests"] = AppointmentHealthTestFormSet()
+            context["analyzes"] = AppointmentAnalysisFormSet()
         return context
 
     def form_valid(self, form):
         context = self.get_context_data()
         appointment = self.kwargs.get("pk")
         diagnoses = context["diagnoses"]
-        health_tests = context["health_tests"]
+        analyzes = context["analyzes"]
 
-        form.instance.user = self.request.user
-        # self.object =
-        if diagnoses.is_valid() and health_tests.is_valid():
-            diagnoses.save()
-            health_tests.save()
-        form.save()
+        with transaction.atomic():
+            form.instance.user = self.request.user
+            self.object = form.save()
+            if diagnoses.is_valid():
+                diagnoses.instance = self.object
+                diagnoses.save()
+            if analyzes.is_valid():
+                analyzes.instance = self.object
+                analyzes.save()
         return super(CreateAppointmentView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy("visit_records:visit_list")
+        return reverse_lazy("visit_records:appointment", kwargs={"pk": self.object.pk})

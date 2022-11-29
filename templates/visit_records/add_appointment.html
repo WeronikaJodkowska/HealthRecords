@@ -58,7 +58,6 @@
         </div>
     </nav>
 
-
     <div class="content-wrapper">
         <div class="container-fluid overflow-hidden">
             <div id="page-title" class="padding-tb-30px gradient-white">
@@ -71,11 +70,17 @@
                     <h1 class="font-weight-300">Add an Appointment</h1>
                 </div>
             </div>
+            <div class="form-output">
+                <div class="container margin-bottom-10px">
+                    <div id="log-in" class="site-form form-control box-shadow border-radius-10">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% crispy form %}
+                        </form>
 
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% crispy form %}
-            </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

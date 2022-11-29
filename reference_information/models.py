@@ -38,10 +38,11 @@ class Diagnosis(models.Model):
         return self.title
 
 
-class DoctorSpecialization(models.Model):
+class Analysis(models.Model):
     class Meta:
-        verbose_name_plural = "Doctor's specializations"
+        verbose_name_plural = "Analyzes"
 
+    test_code = models.CharField(max_length=10)
     title = models.CharField(max_length=300)
     description = models.TextField(blank=True, null=True)
 
@@ -49,11 +50,10 @@ class DoctorSpecialization(models.Model):
         return self.title
 
 
-class HealthTest(models.Model):
+class DoctorSpecialization(models.Model):
     class Meta:
-        verbose_name_plural = "Health tests"
+        verbose_name_plural = "Doctor's specializations"
 
-    test_code = models.CharField(max_length=10, default=0)
     title = models.CharField(max_length=300)
     description = models.TextField(blank=True, null=True)
 
