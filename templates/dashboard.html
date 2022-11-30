@@ -58,31 +58,29 @@
                 </div>
                 <div class="col-lg-7 col-md-12 position-inherit">
                     <ul id="menu-main" class="nav-menu float-lg-right link-padding-tb-20px">
-                        <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Appointments</a>
-                            <ul class="sub-menu">
-                                {% if request.user.is_authenticated %}
+                        {% if request.user.is_authenticated %}
+
+                            <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Appointments</a>
+                                <ul class="sub-menu">
                                     <li><a href="{% url "visit_records:visit_list" %}">My Appointments</a></li>
                                     <li><a href="{% url "visit_records:add_appointment" %}">Add an Appointment</a></li>
-                                {% endif %}
-                            </ul>
-                        </li>
-                        <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Analyzes</a>
-                            <ul class="sub-menu">
-                                {% if request.user.is_authenticated %}
+                                </ul>
+                            </li>
+                            <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Analyzes</a>
+                                <ul class="sub-menu">
                                     <li><a href="{% url "analyzes_records:test_list" %}">My Analyzes</a></li>
                                     <li><a href="{% url "analyzes_records:add_analysis" %}">Add Analysis</a></li>
                                     <li><a href="{% url "analyzes_records:calendar" %}">Calendar</a></li>
-                                {% endif %}
-                            </ul>
-                        </li>
-                        <li class="has-dropdown"><a href="{% url "health_indicators:indicator_list" %}">Indicators</a>
-                            <ul class="sub-menu">
-                                {% if request.user.is_authenticated %}
+                                </ul>
+                            </li>
+                            <li class="has-dropdown"><a
+                                    href="{% url "health_indicators:indicator_list" %}">Indicators</a>
+                                <ul class="sub-menu">
                                     <li><a href="{% url "health_indicators:indicator_list" %}">My Indicators</a></li>
                                     <li><a href="{% url "health_indicators:add_indicator" %}">Add Indicator</a></li>
-                                {% endif %}
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        {% endif %}
                         <li class="has-dropdown"><a href="{% url "reference_information:index" %}">Reference Information
                             <ul class="sub-menu">
                                 <li><a href="{% url "reference_information:diagnosis_list" %}">Diagnoses</a></li>
@@ -204,7 +202,8 @@
                             </a>
                         </div>
                         <div class="col-md-3 col-6 wow fadeInUp" data-wow-delay="0.6s">
-                            <a href="{% url "health_indicators:indicator_list" %}" class="d-block border-radius-15 hvr-float hvr-sh2">
+                            <a href="{% url "health_indicators:indicator_list" %}"
+                               class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
                                     <div class="icon margin-bottom-15px opacity-7">
                                         <img src="{% static 'img/icon/categorie-2.png' %}" alt="">

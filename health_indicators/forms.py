@@ -20,7 +20,9 @@ class CreateIndicatorForm(forms.ModelForm):
         choices=INDICATOR_TYPE_CHOICES,
         widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
-    indicator_date = forms.DateField(widget=forms.SelectDateWidget(years=range(2000, 2050)))
+    indicator_date = forms.DateField(
+        widget=forms.SelectDateWidget(years=range(2000, 2050))
+    )
     indicator_time = forms.TimeField(
         required=False, widget=forms.TimeInput(attrs={"type": "time"})
     )

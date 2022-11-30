@@ -21,4 +21,4 @@ class Indicator(models.Model):
     comment = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return self.indicator_type
+        return self.get_indicator_type_display()

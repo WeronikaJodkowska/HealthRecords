@@ -31,7 +31,10 @@
                                     <div class="padding-lr-30px padding-bottom-30px">
                                         <div class="pull-top-40px z-index-2 position-relative">
                                             <br>
-                                            <h5 class="margin-tb-15px">{{ obj.title }}</h5>
+                                            <h5 class="margin-tb-15px">
+                                                <a href="{% url "reference_information:clinic_detail" obj.id %}">
+                                                    {{ obj.title }}</a>
+                                            </h5>
                                             <span class="text-grey-2">{{ obj.phone_1 }}</span>
                                             <a class="text-blue" href="{{ obj.site }}">{{ obj.site }}</a>
                                         </div>

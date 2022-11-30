@@ -41,4 +41,6 @@ class CreateIndicatorView(LoginRequiredMixin, CreateView):
         return super(CreateIndicatorView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy("health_indicators:indicator", kwargs={"pk": self.object.pk})
+        return reverse_lazy(
+            "health_indicators:indicator", kwargs={"pk": self.object.pk}
+        )

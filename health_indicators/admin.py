@@ -5,4 +5,4 @@ from health_indicators.models import Indicator
 
 @admin.register(Indicator)
 class IndicatorAdmin(admin.ModelAdmin):
-    list_display = ["indicator_type", "indicator_type"]
+    list_display = ["get_indicator_type_display", "indicator_type"]
