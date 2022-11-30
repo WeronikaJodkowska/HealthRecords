@@ -1,5 +1,4 @@
 {% load static %}
-{% load crispy_forms_filters %}
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -52,8 +51,8 @@
             <div class="row">
                 <div class="col-lg-2 col-md-12">
                     <a id="logo" href="{% url "users:index" %}" class="d-inline-block margin-tb-15px"><img
-                            src="{% static 'img/logo-1.png' %}" alt=""><h6
-                            class="text-medium text-main-color font-weight-300 margin-bottom-15px">HealthRecords</h6>
+                            src="{% static 'img/logo-1.png' %}" alt="">
+                        <h6 class="text-medium text-main-color font-weight-300 margin-bottom-15px">HealthRecords</h6>
                     </a>
                     <a class="mobile-toggle padding-13px background-main-color" href="#"><i class="fas fa-bars"></i></a>
                 </div>
@@ -67,10 +66,10 @@
                                 {% endif %}
                             </ul>
                         </li>
-                        <li class="has-dropdown"><a href="{% url "analyzes_records:test_list" %}">Analyzes</a>
+                        <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Analyzes</a>
                             <ul class="sub-menu">
                                 {% if request.user.is_authenticated %}
-                                    <li><a href="{% url "analyzes_records:test_list" %}">My Analyzes</a></li>
+                                    <li><a href="{% url "visit_records:visit_list" %}">My Analyzes</a></li>
                                     <li><a href="{% url "visit_records:add_appointment" %}">Add an Analysis</a></li>
                                     <li><a href="{% url "analyzes_records:calendar" %}">Calendar</a></li>
                                 {% endif %}
@@ -113,56 +112,29 @@
     </div>
 </header>
 <!-- // Header  -->
-
-<section class="content padding-tb-100px"
+<section class="banner padding-tb-200px sm-ptb-80px background-overlay"
          style="background-image: url('{% static 'img/background.jpg' %}');">
-    {% block content %}
-    {% endblock %}
-</section>
+    <div class="container z-index-2 position-relative">
+        <div class="content-wrapper">
+            <div class="container-fluid overflow-hidden">
+                <div class="margin-tb-10px">
+                    <div class="container">
+                        <div class="clearfix">
+                            <a class="btn btn-info left" href="{% url 'analyzes_records:calendar' %}?{{ prev_month }}">
+                                Previous
+                                Month </a>
+                            <a class="btn btn-info right" href="{% url "analyzes_records:calendar" %}?{{ next_month }}">
+                                Next Month </a>
+                        </div>
 
-
-<footer class="padding-tb-30px background-main-color wow fadeInUp">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                <a class="d-inline-block margin-tb-15px"><img src="{% static 'img/logo-2.png' %}" alt="">
-                    <h6 class="text-medium text-white font-weight-300 margin-bottom-15px">HealthRecords</h6>
-                </a>
-            </div>
-            <div class="col-lg-4">
-                <p class="text-white opacity-7">Health Records - Convenient access to health data. For in the paper
-                    version it is sometimes not only inconvenient to store, but unreliable, we created an opportunity to
-                    save the data of analyzes and examinations. Use HealthRecords to control your health.
-                </p>
-            </div>
-            <div class="col-lg-6">
-                <ul class="footer-menu margin-tb-15px margin-lr-0px padding-0px list-unstyled float-lg-right">
-                    <li><a href="#" class="text-white">Featured</a></li>
-                    <li><a href="#" class="text-white">Feedback</a></li>
-                    <li><a href="#" class="text-white">Ask a Question</a></li>
-                    <li><a href="#" class="text-white">Team</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr class="border-white opacity-4 margin-tb-45px">
-        <div class="row">
-            <div class="col-lg-6">
-                <p class="margin-0px text-white opacity-7 sm-mb-15px">© 2022 Weronika Jodkowska HealthRecords |
-                    All Right Reserved. </p>
-            </div>
-            <div class="col-lg-6">
-                <ul class="social-icon style-2 float-lg-right">
-                    <li class="list-inline-item"><a class="linkedin" target="_blank"
-                                                    href="https://www.linkedin.com/in/weronika-jodkowska/"><i
-                            class="fab fa-linkedin"></i></a></li>
-                    <li class="list-inline-item"><a class="github" target="_blank"
-                                                    href="https://github.com/WeronikaJodkowska"><i
-                            class="fab fa-github"></i></a></li>
-                </ul>
+                        {{ calendar }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</footer>
+</section>
+
 <script src="{% static 'js/sticky-sidebar.js' %}"></script>
 <script src="{% static 'js/YouTubePopUp.jquery.js' %}"></script>
 <script src="{% static 'js/owl.carousel.min.js' %}"></script>

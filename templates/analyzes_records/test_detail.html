@@ -2,10 +2,9 @@
 
 {% load static %}
 
-{% block title %}Appointments{% endblock %}
+{% block title %}Analysis{% endblock %}
 
 {% block content %}
-
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark z-index-9  fixed-top" id="mainNav">
 
@@ -44,7 +43,7 @@
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
                     <a class="nav-link active" href="#">
                         <i class="fa fa-fw fa-plus-circle"></i>
-                        <span class="nav-link-text">Add an Anlysis</span>
+                        <span class="nav-link-text">Add an Analysis</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -66,78 +65,69 @@
 
         </div>
     </nav>
+
     <div class="content-wrapper">
         <div class="container-fluid overflow-hidden">
             <div id="page-title" class="padding-tb-30px gradient-white">
                 <div class="container">
                     <ol class="breadcrumb opacity-5">
                         <li><a href="{% url "users:index" %}">Home</a></li>
-                        <li><a href="{% url "visit_records:visit_list" %}">Appointments</a></li>
-                        <li class="active">Appointments</li>
+                        <li><a href="{% url "analyzes_records:test_list" %}">My Analyzes</a></li>
+                        <li class="active">Analysis</li>
                     </ol>
-                    <h1 class="font-weight-300">Appointments</h1>
+                    <h1 class="font-weight-300">{{ test.lab }} / {{ test.test_date }}</h1>
                 </div>
             </div>
 
-            <div class="margin-tb-30px">
-
+            <div class="margin-tb-10px">
                 <div class="container">
-
-                    <div class="col-lg-8">
-                        <div class="row">
-
-                            {% for obj in appointment_list %}
-                                <div class="col-lg-6 margin-bottom-45px full-width">
-                                    <div class="background-white thum-hover box-shadow  hvr-float">
-                                        <div class="padding-30px full-width">
-                                            <div class="margin-left-50px margin-right-50px">
-                                                <a class="d-block text-dark text-medium margin-bottom-5px"
-                                                   href="{% url "visit_records:appointment" obj.id %}">
-                                                    {{ obj.med_category }}
-                                                </a>
-
-                                                <div class="d-block padding-tb-5px">Date:
-                                                    <a href="{% url "visit_records:appointment" obj.id %}"
-                                                       class="text-main-color">{{ obj.appointment_date }}</a></div>
-
-                                                <div class="d-block padding-tb-5px">Doctor:
-                                                    <a href="{% url "visit_records:appointment" obj.id %}"
-                                                       class="text-main-color">{{ obj.doctor }}</a></div>
-
-                                                <div class="d-block padding-tb-5px">Clinic:
-                                                    <a href="{% url "visit_records:appointment" obj.id %}"
-                                                       class="text-main-color">{{ obj.clinic }}</a>
-                                                </div>
-                                            </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="margin-bottom-30px box-shadow">
+                                <div class="padding-30px background-white">
+                                    <h3>
+                                        <i class="far fa-hospital margin-right-10px text-main-color"></i>
+                                        {{ test.lab }} / {{ test.test_date }}
+                                    </h3>
+                                    {% if test.test_time is not Null %}
+                                        <span class="margin-right-20px text-small">Time:
+                                            {{ test.test_time }}</span>
+                                    {% endif %}
+                                    <br>
+                                    {% if test.previous_test is not Null %}
+                                        <span class="margin-right-20px text-small">Previous test:
+                                            <a href="{% url "analyzes_records:analysis" test.previous_test.id %}">
+                                            {{ test.previous_test.test_date }}
+                                            </a></span>
+                                    {% endif %}
+                                    <br>
+                                    <div class="background-light-grey border-radius-10 margin-bottom-45px text-black box-shadow">
+                                        <h3 class="padding-lr-30px padding-top-20px"><i
+                                                class="far fa-clock margin-right-10px"></i> Analysis</h3>
+                                        <div class="padding-bottom-30px">
+                                            <table class="padding-0px margin-0px">
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>Analysis</td>
+                                                    <td>Result</td>
+                                                    <td>Measurement</td>
+                                                    <td>Reference values</td>
+                                                    <td>Comment</td>
+                                                </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>{{ test.analysis }}</td>
+                                                        <td>{{ test.result }}</td>
+                                                        <td>{{ test.measurement }}</td>
+                                                        <td>{{ test.reference }}</td>
+                                                        <td>{{ test.comment }}</td>
+                                                    </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                            {% endfor %}
+                            </div>
                         </div>
-                        {% if is_paginated %}
-                            <ul class="pagination pagination-md ">
-                                <li class="page-item">
-                                    {% if page_obj.has_previous %}
-                                        <a class="page-link rounded-0" href="?page=1">&laquo; first</a>
-                                        <a class="page-link rounded-0"
-                                           href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
-                                    {% endif %}
-                                </li>
-
-                                <li class="page-current">
-                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                                </li>
-
-                                {% if page_obj.has_next %}
-                                    <li class="page-item">
-                                        <a class="page-link rounded-0"
-                                           href="?page={{ page_obj.next_page_number }}">Next</a>
-                                        <a class="page-link rounded-0"
-                                           href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        {% endif %}
                     </div>
                 </div>
             </div>

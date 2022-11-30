@@ -4,11 +4,12 @@ from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
 
-from visit_records.forms import (AppointmentAnalysisFormSet,
-                                 AppointmentDiagnosisFormSet,
-                                 CreateAppointmentForm)
-from visit_records.models import (Appointment, AppointmentAnalysis,
-                                  AppointmentDiagnosis)
+from visit_records.forms import (
+    AppointmentAnalysisFormSet,
+    AppointmentDiagnosisFormSet,
+    CreateAppointmentForm,
+)
+from visit_records.models import Appointment, AppointmentAnalysis, AppointmentDiagnosis
 
 
 class AppointmentListView(ListView):

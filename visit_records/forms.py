@@ -1,16 +1,13 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import (HTML, ButtonHolder, Div, Field, Fieldset,
-                                 Layout, Submit)
+from crispy_forms.layout import HTML, ButtonHolder, Div, Field, Fieldset, Layout, Submit
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms.models import inlineformset_factory
 from easy_select2 import Select2, Select2Multiple
 
-from reference_information.models import (Diagnosis, Doctor, MedCategory,
-                                          MedInstitution)
+from reference_information.models import Diagnosis, Doctor, MedCategory, MedInstitution
 from visit_records.custom_layout_object import Formset
-from visit_records.models import (Appointment, AppointmentAnalysis,
-                                  AppointmentDiagnosis)
+from visit_records.models import Appointment, AppointmentAnalysis, AppointmentDiagnosis
 
 
 class CreateAppointmentForm(forms.ModelForm):

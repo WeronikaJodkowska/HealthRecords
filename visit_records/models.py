@@ -1,8 +1,13 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from reference_information.models import (Analysis, Diagnosis, Doctor,
-                                          MedCategory, MedInstitution)
+from reference_information.models import (
+    Analysis,
+    Diagnosis,
+    Doctor,
+    MedCategory,
+    MedInstitution,
+)
 
 
 class Appointment(models.Model):

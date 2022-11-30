@@ -71,6 +71,7 @@
                                 {% if request.user.is_authenticated %}
                                     <li><a href="{% url "visit_records:visit_list" %}">My Analyzes</a></li>
                                     <li><a href="{% url "visit_records:add_appointment" %}">Add an Analysis</a></li>
+                                    <li><a href="{% url "analyzes_records:calendar" %}">Calendar</a></li>
                                 {% endif %}
                             </ul>
                         </li>
@@ -120,6 +121,7 @@
             <h4 class="font-weight-300 text-main-color text-up-small">Convenient access to health data. We'll help
                 you achieve it</h4>
         </div>
+        <br><br>
         {% if request.user.is_authenticated %}
 
             {#            <div class="row justify-content-center margin-tb-60px">#}
@@ -172,7 +174,8 @@
                             </a>
                         </div>
                         <div class="col-md-3 col-6 sm-mb-30px wow fadeInUp" data-wow-delay="0.2s">
-                            <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                            <a href="{% url "analyzes_records:test_list" %}"
+                               class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
                                     <div class="icon margin-bottom-15px opacity-7">
                                         <img src="{% static 'img/icon/categorie-3.png' %}" alt="">

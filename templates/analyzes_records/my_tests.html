@@ -72,10 +72,10 @@
                 <div class="container">
                     <ol class="breadcrumb opacity-5">
                         <li><a href="{% url "users:index" %}">Home</a></li>
-                        <li><a href="{% url "visit_records:visit_list" %}">Appointments</a></li>
-                        <li class="active">Appointments</li>
+                        <li><a href="{% url "analyzes_records:test_list" %}">Analyzes</a></li>
+                        <li class="active">Analyzes</li>
                     </ol>
-                    <h1 class="font-weight-300">Appointments</h1>
+                    <h1 class="font-weight-300">Analyzes</h1>
                 </div>
             </div>
 
@@ -86,34 +86,30 @@
                     <div class="col-lg-8">
                         <div class="row">
 
-                            {% for obj in appointment_list %}
+                            {% for obj in test_list %}
                                 <div class="col-lg-6 margin-bottom-45px full-width">
                                     <div class="background-white thum-hover box-shadow  hvr-float">
                                         <div class="padding-30px full-width">
                                             <div class="margin-left-50px margin-right-50px">
+
                                                 <a class="d-block text-dark text-medium margin-bottom-5px"
-                                                   href="{% url "visit_records:appointment" obj.id %}">
-                                                    {{ obj.med_category }}
-                                                </a>
+                                                   href="{% url "analyzes_records:analysis" obj.id %}">{{ obj.analysis.title }}</a>
+
+                                                <div class="d-block padding-tb-5px">Lab:
+                                                    <a href="{% url "analyzes_records:analysis" obj.id %}"
+                                                       class="text-main-color">{{ obj.lab }}</a></div>
 
                                                 <div class="d-block padding-tb-5px">Date:
-                                                    <a href="{% url "visit_records:appointment" obj.id %}"
-                                                       class="text-main-color">{{ obj.appointment_date }}</a></div>
+                                                    <a href="{% url "analyzes_records:analysis" obj.id %}"
+                                                       class="text-main-color">{{ obj.test_date }}</a></div>
 
-                                                <div class="d-block padding-tb-5px">Doctor:
-                                                    <a href="{% url "visit_records:appointment" obj.id %}"
-                                                       class="text-main-color">{{ obj.doctor }}</a></div>
-
-                                                <div class="d-block padding-tb-5px">Clinic:
-                                                    <a href="{% url "visit_records:appointment" obj.id %}"
-                                                       class="text-main-color">{{ obj.clinic }}</a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             {% endfor %}
                         </div>
+
                         {% if is_paginated %}
                             <ul class="pagination pagination-md ">
                                 <li class="page-item">

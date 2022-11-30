@@ -17,7 +17,7 @@
                     <span class="nav-title-text">Main</span>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="dashboard-home.html">
+                    <a class="nav-link" href="{% url "users:index" %}">
                         <i class="fas fa-fw fa-home"></i><span class="nav-link-text">Dashboard</span>
                     </a>
                 </li>
@@ -28,9 +28,15 @@
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url "analyzes_records:test_list" %}">
                         <i class="fa fa-fw fa-table"></i>
                         <span class="nav-link-text">My Analyzes</span>
+                    </a>
+                </li>
+                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
+                    <a class="nav-link" href="{% url "analyzes_records:calendar" %}">
+                        <i class="fa fa-fw fa-calendar"></i>
+                        <span class="nav-link-text">Analyzes Calendar</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -45,7 +51,7 @@
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
                     <a class="nav-link active" href="#">
                         <i class="fa fa-fw fa-plus-circle"></i>
-                        <span class="nav-link-text">Add an Anlysis</span>
+                        <span class="nav-link-text">Add an Analysis</span>
                     </a>
                 </li>
                 <li class="nav-item">

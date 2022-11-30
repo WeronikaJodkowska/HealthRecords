@@ -2,8 +2,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from .views import (AppointmentDetailView, AppointmentListView,
-                    CreateAppointmentView)
+from visit_records.views import (
+    AppointmentDetailView,
+    AppointmentListView,
+    CreateAppointmentView,
+)
 
 app_name = "visit_records"
 
