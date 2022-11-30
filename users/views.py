@@ -20,7 +20,11 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
 
 
 def index(request):
-    return render(request, "base.html")
+    return render(request, "dashboard.html")
+
+
+def contact(request):
+    return render(request, "contact.html")
 
 
 def validate_password_strength(value):

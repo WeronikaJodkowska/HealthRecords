@@ -62,42 +62,19 @@
                         <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Appointments</a>
                             <ul class="sub-menu">
                                 {% if request.user.is_authenticated %}
-                                <li><a href="{% url "visit_records:visit_list" %}">My Appointments</a></li>
-                                <li><a href="{% url "visit_records:add_appointment" %}">Add an Appointment</a></li>
+                                    <li><a href="{% url "visit_records:visit_list" %}">My Appointments</a></li>
+                                    <li><a href="{% url "visit_records:add_appointment" %}">Add an Appointment</a></li>
                                 {% endif %}
-                                <li><a href="home-3.html">Home 3</a></li>
-                                <li><a href="home-4.html">Home 4</a></li>
                             </ul>
                         </li>
-                        {#                        <li class="has-dropdown"><a href="#">Listings</a>#}
-                        {#                            <ul class="sub-menu">#}
-                        {#                                <li><a href="map-grid-layout.html">Map - Grid Layout </a></li>#}
-                        {#                                <li><a href="map-list-layout.html">Map - List Layout</a></li>#}
-                        {#                                <li><a href="doctor-layout-1.html">Doctor - Layout (1)</a></li>#}
-                        {#                                <li><a href="doctor-layout-2.html">Doctor - Layout (2)</a></li>#}
-                        {#                                <li><a href="single-listings.html">Single Listings</a></li>#}
-                        {#                            </ul>#}
-                        {#                        </li>#}
-                        {#                        <li class="has-dropdown"><a href="#">Dashboard</a>#}
-                        {#                            <ul class="sub-menu">#}
-                        {#                                <li><a href="dashboard-home.html">Dashboard Home </a></li>#}
-                        {#                                <li><a href="dashboard-my-listings.html">My Listings</a></li>#}
-                        {#                                <li><a href="dashboard-my-favorites.html">My Favorites</a></li>#}
-                        {#                                <li><a href="dashboard-reviews.html">Reviews</a></li>#}
-                        {#                                <li><a href="dashboard-bookings.html">Bookings</a></li>#}
-                        {#                                <li><a href="dashboard-add-listing.html">Add Listing</a></li>#}
-                        {#                                <li><a href="dashboard-packages.html">Packages</a></li>#}
-                        {#                                <li><a href="dashboard-my-profile.html">My Profile</a></li>#}
-                        {#                            </ul>#}
-                        {#                        </li>#}
-                        {#                        <li class="has-dropdown"><a href="#">Blog</a>#}
-                        {#                            <ul class="sub-menu">#}
-                        {#                                <li><a href="blog-grid.html">Blog Grid </a></li>#}
-                        {#                                <li><a href="blog-list.html">Blog List</a></li>#}
-                        {#                                <li><a href="blog-classic.html">Blog Classic</a></li>#}
-                        {#                                <li><a href="blog-single.html">Blog Single</a></li>#}
-                        {#                            </ul>#}
-                        {#                        </li>#}
+                        <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Analyzes</a>
+                            <ul class="sub-menu">
+                                {% if request.user.is_authenticated %}
+                                    <li><a href="{% url "visit_records:visit_list" %}">My Analyzes</a></li>
+                                    <li><a href="{% url "visit_records:add_appointment" %}">Add an Analysis</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
                         <li class="has-dropdown"><a href="{% url "reference_information:index" %}">Reference Information
                             <ul class="sub-menu">
                                 <li><a href="{% url "reference_information:diagnosis_list" %}">Diagnoses</a></li>
@@ -107,7 +84,7 @@
                             </ul>
                         </a>
                         </li>
-                        {#                        <li><a href="page-contact-us.html">Conact Us</a></li>#}
+                        <li><a href="{% url "users:contact" %}">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-12">
@@ -147,11 +124,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <a class="d-inline-block margin-tb-15px"><img src="{% static 'img/logo-2.png' %}" alt=""></a>
+                <a class="d-inline-block margin-tb-15px"><img src="{% static 'img/logo-2.png' %}" alt="">
+                    <h6 class="text-medium text-white font-weight-300 margin-bottom-15px">HealthRecords</h6>
+                </a>
             </div>
             <div class="col-lg-4">
-                <p class="text-white opacity-7">Lorem Ipsum is simply dummy text of the printing and typesetting
-                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                <p class="text-white opacity-7">Health Records - Convenient access to health data. For in the paper
+                    version it is sometimes not only inconvenient to store, but unreliable, we created an opportunity to
+                    save the data of analyzes and examinations. Use HealthRecords to control your health.
+                </p>
             </div>
             <div class="col-lg-6">
                 <ul class="footer-menu margin-tb-15px margin-lr-0px padding-0px list-unstyled float-lg-right">
@@ -170,9 +151,12 @@
             </div>
             <div class="col-lg-6">
                 <ul class="social-icon style-2 float-lg-right">
-                    <li class="list-inline-item"><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-                    <li class="list-inline-item"><a class="google" href="#"><i class="fab fa-google-plus"></i></a></li>
-                    <li class="list-inline-item"><a class="github" href="#"><i class="fab fa-github"></i></a></li>
+                    <li class="list-inline-item"><a class="linkedin" target="_blank"
+                                                    href="https://www.linkedin.com/in/weronika-jodkowska/"><i
+                            class="fab fa-linkedin"></i></a></li>
+                    <li class="list-inline-item"><a class="github" target="_blank"
+                                                    href="https://github.com/WeronikaJodkowska"><i
+                            class="fab fa-github"></i></a></li>
                 </ul>
             </div>
         </div>

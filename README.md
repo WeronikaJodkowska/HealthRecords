@@ -1,5 +1,8 @@
-# HealthRecords application 
+# HealthRecords 
 
+Health Records - convenient access to health data. 
+For in the paper version it is sometimes not only inconvenient to store, but unreliable, 
+we created an opportunity to save the data of analyzes and examinations.
 
 
 ## Setup

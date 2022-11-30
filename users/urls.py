@@ -17,13 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from users.views import (ChangePasswordView, edit_profile, index, login_user,
-                         logout_view, register)
+from users.views import (ChangePasswordView, contact, edit_profile, index,
+                         login_user, logout_view, register)
 
 app_name = "users"
 
 urlpatterns = [
     path("", index, name="index"),
+    path("contact/", contact, name="contact"),
     path("register/", register, name="register"),
     path("login/", login_user, name="login_user"),
     path("logout/", logout_view, name="logout"),

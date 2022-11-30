@@ -14,13 +14,7 @@ class LabTest(models.Model):
     )
 
     def __str__(self):
-        return (
-            self.user.email
-            + " / "
-            + self.lab.title
-            + " / "
-            + str(self.test_date)
-        )
+        return self.user.email + " / " + self.lab.title + " / " + str(self.test_date)
 
 
 class Test(models.Model):

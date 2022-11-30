@@ -3,7 +3,6 @@ from easy_select2 import select2_modelform
 
 from .models import LabTest, Test
 
-
 LabTestForm = select2_modelform(LabTest, attrs={"width": "250px"})
 TestForm = select2_modelform(Test, attrs={"width": "250px"})
 
