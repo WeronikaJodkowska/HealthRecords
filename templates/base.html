@@ -76,6 +76,15 @@
                                 {% endif %}
                             </ul>
                         </li>
+                        <li class="has-dropdown"><a href="{% url "health_indicators:indicator_list" %}">Indicators</a>
+                            <ul class="sub-menu">
+                                {% if request.user.is_authenticated %}
+                                    <li><a href="{% url "health_indicators:indicator_list" %}">My Indicators</a></li>
+                                    <li><a href="{% url "analyzes_records:add_analysis" %}">Add Analysis</a></li>
+                                    <li><a href="{% url "analyzes_records:calendar" %}">Calendar</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
                         <li class="has-dropdown"><a href="{% url "reference_information:index" %}">Reference Information
                             <ul class="sub-menu">
                                 <li><a href="{% url "reference_information:diagnosis_list" %}">Diagnoses</a></li>

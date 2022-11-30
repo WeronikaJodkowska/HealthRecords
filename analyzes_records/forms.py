@@ -12,9 +12,7 @@ class CreateAnalysisForm(forms.ModelForm):
         queryset=Laboratory.objects.all(),
         widget=Select2(attrs={"class": "form-control form-control-sm"}),
     )
-    test_date = forms.DateField(
-        widget=forms.SelectDateWidget(years=range(2000, 2050))
-    )
+    test_date = forms.DateField(widget=forms.SelectDateWidget(years=range(2000, 2050)))
     test_time = forms.TimeField(
         required=False, widget=forms.TimeInput(attrs={"type": "time"})
     )

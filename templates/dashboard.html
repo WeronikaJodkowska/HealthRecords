@@ -75,6 +75,15 @@
                                 {% endif %}
                             </ul>
                         </li>
+                        <li class="has-dropdown"><a href="{% url "health_indicators:indicator_list" %}">Indicators</a>
+                            <ul class="sub-menu">
+                                {% if request.user.is_authenticated %}
+                                    <li><a href="{% url "health_indicators:indicator_list" %}">My Indicators</a></li>
+                                    <li><a href="{% url "analyzes_records:add_analysis" %}">Add Analysis</a></li>
+                                    <li><a href="{% url "analyzes_records:calendar" %}">Calendar</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
                         <li class="has-dropdown"><a href="{% url "reference_information:index" %}">Reference Information
                             <ul class="sub-menu">
                                 <li><a href="{% url "reference_information:diagnosis_list" %}">Diagnoses</a></li>
@@ -196,12 +205,12 @@
                             </a>
                         </div>
                         <div class="col-md-3 col-6 wow fadeInUp" data-wow-delay="0.6s">
-                            <a href="#" class="d-block border-radius-15 hvr-float hvr-sh2">
+                            <a href="{% url "health_indicators:indicator_list" %}" class="d-block border-radius-15 hvr-float hvr-sh2">
                                 <div class="background-main-color text-white border-radius-15 padding-20px text-center opacity-hover-7">
                                     <div class="icon margin-bottom-15px opacity-7">
                                         <img src="{% static 'img/icon/categorie-2.png' %}" alt="">
                                     </div>
-                                    Pharmacies
+                                    Indicators
                                 </div>
                             </a>
                         </div>

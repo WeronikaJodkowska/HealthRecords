@@ -24,6 +24,7 @@ urlpatterns = [
     path("reference_information/", include("reference_information.urls")),
     path("visit_records/", include("visit_records.urls")),
     path("analyzes_records/", include("analyzes_records.urls")),
+    path("indicators/", include("health_indicators.urls")),
 ]
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:

@@ -2,7 +2,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from analyzes_records.views import CalendarView, LabTestDetailView, LabTestListView, CreateAnalysisView
+from analyzes_records.views import (
+    CalendarView,
+    LabTestDetailView,
+    LabTestListView,
+    CreateAnalysisView,
+)
 
 app_name = "analyzes_records"
 
