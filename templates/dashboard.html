@@ -79,8 +79,7 @@
                             <ul class="sub-menu">
                                 {% if request.user.is_authenticated %}
                                     <li><a href="{% url "health_indicators:indicator_list" %}">My Indicators</a></li>
-                                    <li><a href="{% url "analyzes_records:add_analysis" %}">Add Analysis</a></li>
-                                    <li><a href="{% url "analyzes_records:calendar" %}">Calendar</a></li>
+                                    <li><a href="{% url "health_indicators:add_indicator" %}">Add Indicator</a></li>
                                 {% endif %}
                             </ul>
                         </li>

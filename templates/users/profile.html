@@ -33,10 +33,16 @@
                         <span class="nav-link-text">My Analyzes</span>
                     </a>
                 </li>
-                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
                     <a class="nav-link" href="{% url "analyzes_records:calendar" %}">
                         <i class="fa fa-fw fa-calendar"></i>
                         <span class="nav-link-text">Analyzes Calendar</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
+                    <a class="nav-link" href="{% url "health_indicators:indicator_list" %}">
+                        <i class="fa fa-fw fa-table"></i>
+                        <span class="nav-link-text">My Indicators</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -52,6 +58,12 @@
                     <a class="nav-link active" href="{% url "analyzes_records:add_analysis" %}">
                         <i class="fa fa-fw fa-plus-circle"></i>
                         <span class="nav-link-text">Add Analysis</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
+                    <a class="nav-link active" href="{% url "health_indicators:add_indicator" %}">
+                        <i class="fa fa-fw fa-plus-circle"></i>
+                        <span class="nav-link-text">Add Indicator</span>
                     </a>
                 </li>
                 <li class="nav-item">
