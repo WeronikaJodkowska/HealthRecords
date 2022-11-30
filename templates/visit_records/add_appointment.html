@@ -7,7 +7,7 @@
 
 {% block content %}
 
-  <!-- Navigation-->
+    <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark z-index-9  fixed-top" id="mainNav">
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -33,19 +33,25 @@
                         <span class="nav-link-text">My Analyzes</span>
                     </a>
                 </li>
+                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
+                    <a class="nav-link" href="{% url "analyzes_records:calendar" %}">
+                        <i class="fa fa-fw fa-calendar"></i>
+                        <span class="nav-link-text">Analyzes Calendar</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <span class="nav-title-text">Add Pages</span>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
                     <a class="nav-link active" href="{% url "visit_records:add_appointment" %}">
                         <i class="fa fa-fw fa-plus-circle"></i>
-                        <span class="nav-link-text">Add an Appointment</span>
+                        <span class="nav-link-text">Add Appointment</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
-                    <a class="nav-link active" href="#">
+                    <a class="nav-link active" href="{% url "analyzes_records:add_analysis" %}">
                         <i class="fa fa-fw fa-plus-circle"></i>
-                        <span class="nav-link-text">Add an Anlysis</span>
+                        <span class="nav-link-text">Add Analysis</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -67,6 +73,7 @@
 
         </div>
     </nav>
+
     <div class="content-wrapper">
         <div class="container-fluid overflow-hidden">
             <div id="page-title" class="padding-tb-30px gradient-white">
@@ -74,9 +81,9 @@
                     <ol class="breadcrumb opacity-5">
                         <li><a href="{% url "users:index" %}">Home</a></li>
                         <li><a href="{% url "visit_records:visit_list" %}">Appointments</a></li>
-                        <li class="active">Add an Appointment</li>
+                        <li class="active">Add Appointment</li>
                     </ol>
-                    <h1 class="font-weight-300">Add an Appointment</h1>
+                    <h1 class="font-weight-300">Add Appointment</h1>
                 </div>
             </div>
             <div class="form-output">

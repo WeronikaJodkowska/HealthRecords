@@ -13,6 +13,7 @@ from django.views.generic import CreateView, DetailView, ListView
 
 from analyzes_records.models import LabTest
 from analyzes_records.utils import Calendar
+from analyzes_records.forms import CreateAnalysisForm
 
 
 class LabTestListView(ListView):
@@ -76,3 +77,18 @@ def get_date(req_day):
         year, month = (int(x) for x in req_day.split("-"))
         return date(year, month, day=1)
     return datetime.today()
+
+
+class CreateAnalysisView(LoginRequiredMixin, CreateView):
+    form_class = CreateAnalysisForm
+    template_name = "analyzes_records/add_test.html"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        if form.is_valid():
+            form.save()
+
+        return super(CreateAnalysisView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy("analyzes_records:analysis", kwargs={"pk": self.object.pk})

@@ -17,6 +17,9 @@ class LabTest(models.Model):
     measurement = models.CharField(max_length=50, default="")
     reference = models.TextField(blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
+    file = models.FileField(
+        upload_to="analyzes_files/%Y/%m/%d", blank=True, null=True
+    )
 
     def __str__(self):
         return (

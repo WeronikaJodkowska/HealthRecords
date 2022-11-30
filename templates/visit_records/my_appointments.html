@@ -32,19 +32,25 @@
                         <span class="nav-link-text">My Analyzes</span>
                     </a>
                 </li>
+                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My items">
+                    <a class="nav-link" href="{% url "analyzes_records:calendar" %}">
+                        <i class="fa fa-fw fa-calendar"></i>
+                        <span class="nav-link-text">Analyzes Calendar</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <span class="nav-title-text">Add Pages</span>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
                     <a class="nav-link active" href="{% url "visit_records:add_appointment" %}">
                         <i class="fa fa-fw fa-plus-circle"></i>
-                        <span class="nav-link-text">Add an Appointment</span>
+                        <span class="nav-link-text">Add Appointment</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add Listing">
-                    <a class="nav-link active" href="#">
+                    <a class="nav-link active" href="{% url "analyzes_records:add_analysis" %}">
                         <i class="fa fa-fw fa-plus-circle"></i>
-                        <span class="nav-link-text">Add an Anlysis</span>
+                        <span class="nav-link-text">Add Analysis</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -66,6 +72,7 @@
 
         </div>
     </nav>
+
     <div class="content-wrapper">
         <div class="container-fluid overflow-hidden">
             <div id="page-title" class="padding-tb-30px gradient-white">

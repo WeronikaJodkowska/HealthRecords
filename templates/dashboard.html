@@ -69,8 +69,8 @@
                         <li class="has-dropdown"><a href="{% url "visit_records:visit_list" %}">Analyzes</a>
                             <ul class="sub-menu">
                                 {% if request.user.is_authenticated %}
-                                    <li><a href="{% url "visit_records:visit_list" %}">My Analyzes</a></li>
-                                    <li><a href="{% url "visit_records:add_appointment" %}">Add an Analysis</a></li>
+                                    <li><a href="{% url "analyzes_records:test_list" %}">My Analyzes</a></li>
+                                    <li><a href="{% url "analyzes_records:add_analysis" %}">Add Analysis</a></li>
                                     <li><a href="{% url "analyzes_records:calendar" %}">Calendar</a></li>
                                 {% endif %}
                             </ul>

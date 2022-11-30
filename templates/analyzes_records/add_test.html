@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load crispy_forms_tags %}
 
-{% block title %}Analysis{% endblock %}
+{% block title %}Analyzes{% endblock %}
 
 {% block content %}
+
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark z-index-9  fixed-top" id="mainNav">
 
@@ -78,65 +80,27 @@
                 <div class="container">
                     <ol class="breadcrumb opacity-5">
                         <li><a href="{% url "users:index" %}">Home</a></li>
-                        <li><a href="{% url "analyzes_records:test_list" %}">My Analyzes</a></li>
-                        <li class="active">Analysis</li>
+                        <li><a href="{% url "analyzes_records:test_list" %}">Analyzes</a></li>
+                        <li class="active">Add Analysis</li>
                     </ol>
-                    <h1 class="font-weight-300">{{ test.lab }} / {{ test.test_date }}</h1>
+                    <h1 class="font-weight-300">Add Analysis</h1>
                 </div>
             </div>
-
-            <div class="margin-tb-10px">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="margin-bottom-30px box-shadow">
-                                <div class="padding-30px background-white">
-                                    <h3>
-                                        <i class="far fa-hospital margin-right-10px text-main-color"></i>
-                                        {{ test.lab }} / {{ test.test_date }}
-                                    </h3>
-                                    {% if test.test_time is not Null %}
-                                        <span class="margin-right-20px text-small">Time:
-                                            {{ test.test_time }}</span>
-                                    {% endif %}
-                                    <br>
-                                    {% if test.previous_test is not Null %}
-                                        <span class="margin-right-20px text-small">Previous test:
-                                            <a href="{% url "analyzes_records:analysis" test.previous_test.id %}">
-                                            {{ test.previous_test.test_date }}
-                                            </a></span>
-                                    {% endif %}
-                                    <br>
-                                    <div class="background-light-grey border-radius-10 margin-bottom-45px text-black box-shadow">
-                                        <h3 class="padding-lr-30px padding-top-20px"><i
-                                                class="far fa-clock margin-right-10px"></i> Analysis</h3>
-                                        <div class="padding-bottom-30px">
-                                            <table class="padding-0px margin-0px">
-                                                <tr>
-                                                    <td>&nbsp;</td>
-                                                    <td>Analysis</td>
-                                                    <td>Result</td>
-                                                    <td>Measurement</td>
-                                                    <td>Reference values</td>
-                                                    <td>Comment</td>
-                                                </tr>
-                                                    <tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>{{ test.analysis }}</td>
-                                                        <td>{{ test.result }}</td>
-                                                        <td>{{ test.measurement }}</td>
-                                                        <td>{{ test.reference }}</td>
-                                                        <td>{{ test.comment }}</td>
-                                                    </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="form-output">
+                <div class="container margin-bottom-10px">
+                    <div id="log-in" class="site-form form-control box-shadow border-radius-10">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% crispy form %}
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block footer %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{ form.media.js }}
 {% endblock %}
