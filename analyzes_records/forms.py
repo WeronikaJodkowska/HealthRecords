@@ -3,8 +3,8 @@ from crispy_forms.layout import HTML, ButtonHolder, Div, Field, Layout, Submit
 from django import forms
 from easy_select2 import Select2
 
-from reference_information.models import Analysis, Laboratory
 from analyzes_records.models import LabTest
+from reference_information.models import Analysis, Laboratory
 
 
 class CreateAnalysisForm(forms.ModelForm):

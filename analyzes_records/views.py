@@ -1,5 +1,6 @@
 import calendar
 from datetime import date, datetime, timedelta
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
@@ -7,9 +8,9 @@ from django.utils.safestring import mark_safe
 from django.views import generic
 from django.views.generic import CreateView, DetailView, ListView
 
+from analyzes_records.forms import CreateAnalysisForm
 from analyzes_records.models import LabTest
 from analyzes_records.utils import Calendar
-from analyzes_records.forms import CreateAnalysisForm
 
 
 class LabTestListView(ListView):

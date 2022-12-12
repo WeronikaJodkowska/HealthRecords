@@ -25,6 +25,7 @@ class AllergyAdmin(admin.ModelAdmin):
 class DiagnosisAdmin(admin.ModelAdmin):
     list_display = ["icd_code", "title"]
     search_fields = ["icd_code", "title"]
+    list_per_page = 500
 
 
 @admin.register(Doctor)

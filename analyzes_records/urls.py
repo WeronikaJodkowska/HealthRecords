@@ -4,9 +4,9 @@ from django.urls import path
 
 from analyzes_records.views import (
     CalendarView,
+    CreateAnalysisView,
     LabTestDetailView,
     LabTestListView,
-    CreateAnalysisView,
 )
 
 app_name = "analyzes_records"

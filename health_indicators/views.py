@@ -5,8 +5,8 @@ from django.template.defaultfilters import register
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
 
-from health_indicators.models import Indicator
 from health_indicators.forms import CreateIndicatorForm
+from health_indicators.models import Indicator
 
 
 class IndicatorListView(ListView):
