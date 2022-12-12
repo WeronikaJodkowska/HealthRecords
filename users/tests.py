@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
@@ -15,3 +16,17 @@ class HomePageTest(TestCase):
         resp = self.client.get(reverse("users:index"))
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, "dashboard.html")
+
+
+class UserTests(TestCase):
+    def test_create_user(self):
+        user = User.objects.create_user(
+            username="test",
+            email="test@email.com",
+            password="test12345"
+        )
+        self.assertEqual(user.username, "test")
+        self.assertEqual(user.email, "test@email.com")
+        self.assertTrue(user.is_active)
+        self.assertFalse(user.is_staff)
+        self.assertFalse(user.is_superuser)
