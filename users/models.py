@@ -1,8 +1,8 @@
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
+from datetime import date
 
-from reference_information.models import Allergy
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Profile(models.Model):
@@ -25,18 +25,37 @@ class Profile(models.Model):
 
     TRUE_FALSE_CHOICES = ((True, "Yes"), (False, "No"))
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # name = models.CharField(max_length=200, blank=True, null=True)
-    # surname = models.CharField(max_length=200, blank=True, null=True)
-    date_of_birth = models.DateField(blank=True, null=True)
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="Username",
+    )
+    date_of_birth = models.DateField(
+        blank=True,
+        null=True,
+        validators=[
+            MaxValueValidator(date.today()),
+            MinValueValidator(date(1900, 1, 1)),
+        ],
+    )
     blood_type = models.CharField(
         max_length=3, choices=BLOOD_TYPE_CHOICES, blank=True, null=True
     )
     gender = models.CharField(
         max_length=1, choices=GENDER_CHOICES, blank=True, null=True
     )
-    height = models.IntegerField(blank=True, null=True)
-    weight = models.IntegerField(blank=True, null=True)
+    height = models.IntegerField(
+        blank=True,
+        null=True,
+        help_text="in cm",
+        validators=[MaxValueValidator(300), MinValueValidator(40)],
+    )
+    weight = models.IntegerField(
+        blank=True,
+        null=True,
+        help_text="in kg",
+        validators=[MaxValueValidator(650), MinValueValidator(2)],
+    )
 
     def __str__(self):
         return f"Profile for user {self.user.username}"
